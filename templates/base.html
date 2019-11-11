@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prodai {% block title %}{% endblock %}</title>
+    <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+</head>
+<body>
+        {% block content %}{% endblock %}
+</body>
+</html>
