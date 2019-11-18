@@ -1,0 +1,137 @@
+{% load static from staticfiles %}
+{% block static %}<link rel="stylesheet" href="{% static 'homepage/css/style.css' %}">{% endblock %}
+
+<div class="container pb-5">
+
+    <div class="intro title-text pb-4">
+        <h2 class="text-center pt-5">Our amazing prices</h2>
+        <h4 class="text-center text-muted">Lorem ipsum dolor sit amet. loremdolor sit amet.lorem</h4>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 col-sm-6 my-4 mx-auto d-block">
+            <div class="card text-center">
+                <!--					card title-->
+                <div class="card-title pt-3">
+                    <h4 class="text-muted">Basic</h4>
+                    <h6 class="text-muted">Monthly Plan</h6>
+                </div>
+                <!--						card price-->
+                <div class="card-text price-num">
+                    <sup class="money">€</sup><span class="money-num">19</span><sub class="money-end">.99</sub>
+                </div>
+
+                <ul class="list-group list-group-flush mt-5">
+                    <li class="list-group-item text-uppercase text-muted first-list">Lorem ipsum dolor sit amet 1</li>
+                    <li class="list-group-item text-uppercase text-muted">Lorem ipsum dolor sit amet 2</li>
+                    <li class="list-group-item text-uppercase text-muted">Lorem ipsum dolor sit amet 3</li>
+                    <li class="list-group-item text-uppercase text-muted">Lorem ipsum dolor sit amet 4</li>
+                    <li class="list-group-item text-uppercase text-muted mb-4">24/7 live support</li>
+                </ul>
+                <a href="#" class="btn price-btn w-50 d-block mx-auto">Select</a>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-sm-6 standard my-4 mx-auto d-block">
+            <div class="card text-center">
+                <!--					card title-->
+                <div class="card-title pt-3">
+                    <h4 class="text-muted">Standard</h4>
+                    <h6 class="text-muted">Monthly Plan</h6>
+                </div>
+                <!--						card price-->
+                <div class="card-text price-num">
+                    <sup class="money">€</sup><span class="money-num">29</span><sub class="money-end">.99</sub>
+                </div>
+
+                <ul class="list-group list-group-flush mt-5">
+                    <li class="list-group-item text-muted first-list">Lorem ipsum dolor sit amet 1</li>
+                    <li class="list-group-item text-muted">Lorem ipsum dolor sit amet 2</li>
+                    <li class="list-group-item text-muted">Lorem ipsum dolor sit amet 3</li>
+                    <li class="list-group-item text-muted">Lorem ipsum dolor sit amet 4</li>
+                    <li class="list-group-item text-muted mb-4">24/7 live support</li>
+                </ul>
+                <a href="#" class="btn price-btn w-50 d-block mx-auto">Select</a>
+            </div>
+        </div>
+        <!--				end of column-->
+        <div class="col-lg-4 col-sm-6 premium my-4 mx-auto d-block">
+            <div class="card text-center">
+                <!--					card title-->
+                <div class="card-title pt-3">
+                    <h4>Premium</h4>
+                    <h6>Monthly Plan</h6>
+                </div>
+                <!--						card price-->
+                <div class="card-text price-num ">
+                    <sup class="money">€</sup><span class="money-num">39</span><sub class="money-end">.99</sub>
+                </div>
+
+                <ul class="list-group list-group-flush mt-5">
+                    <li class="list-group-item text-muted first-list">Lorem ipsum dolor sit amet 1</li>
+                    <li class="list-group-item text-muted">Lorem ipsum dolor sit amet 2</li>
+                    <li class="list-group-item text-muted">Lorem ipsum dolor sit amet 3</li>
+                    <li class="list-group-item text-muted">Lorem ipsum dolor sit amet 4</li>
+                    <li class="list-group-item text-muted mb-4">24/7 live support</li>
+                </ul>
+                <a href="#" class="btn price-btn w-50 d-block mx-auto">Select</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+{% comment %}
+<div class="container">
+    <div class="d-flex flex-column align-items-center intro">
+        <h2 class="text-center" style="padding-top:40px;margin-bottom:40px;">Pricing</h2>
+        <p class="text-center" style="width:500px;">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+            diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</p>
+    </div>
+    <div class="row d-flex" style="padding-top:50px;">
+        <div class="col-md-4 d-flex flex-column align-items-center"
+             style="background-color:#ffffff;padding-top:0;">
+            <h3 class="d-flex">STARTER</h3>
+            <p>0 € / month per user</p>
+            <ul style="width:243px;">
+                <li style="font-family:Lato, sans-serif;color:#0a4e92;">Lorem ipsum dolor sit amet 1</li>
+                <li style="font-family:Lato, sans-serif;color:#0a4e92;">Lorem ipsum dolor sit amet 2</li>
+                <li style="font-family:Lato, sans-serif;color:#0a4e92;">Lorem ipsum dolor sit amet 3</li>
+                <li style="font-family:Lato, sans-serif;color:rgb(10,78,146);">Lorem ipsum dolor sit amet 4</li>
+            </ul>
+            <button class="btn btn-outline-primary" type="submit" style="color:#0a4e92;">Select</button>
+            <p style="font-size:14px;color:rgba(33,37,41,0.63);">14-day money back guarantee</p>
+        </div>
+        <div class="col-md-4 d-flex flex-column align-items-center" style="background-color:#ffffff;">
+            <h3 class="d-flex">BASIC</h3>
+            <p>2 € / month per user</p>
+            <ul style="width:243px;">
+                <li style="font-family:Lato, sans-serif;color:#0a4e92;">Lorem ipsum dolor sit amet 1</li>
+                <li style="font-family:Lato, sans-serif;color:#0a4e92;">Lorem ipsum dolor sit amet 2</li>
+                <li style="font-family:Lato, sans-serif;color:#0a4e92;">Lorem ipsum dolor sit amet 3</li>
+                <li style="font-family:Lato, sans-serif;color:rgb(10,78,146);">Lorem ipsum dolor sit amet 4</li>
+                <li style="font-family:Lato, sans-serif;color:rgb(10,78,146);">Lorem ipsum dolor sit amet 5</li>
+                <li style="font-family:Lato, sans-serif;color:rgb(10,78,146);">Lorem ipsum dolor sit amet 6</li>
+            </ul>
+            <button class="btn btn-outline-primary" type="submit" style="color:#0a4e92;">Select</button>
+            <p style="font-size:14px;color:rgba(33,37,41,0.63);">14-day money back guarantee</p>
+        </div>
+        <div class="col-md-4 d-flex flex-column align-items-center" style="background-color:#ffffff;">
+            <h3 class="d-flex">PREMIUM</h3>
+            <p>5 € / month per user</p>
+            <ul style="width:243px;">
+                <li style="font-family:Lato, sans-serif;color:#0a4e92;">Lorem ipsum dolor sit amet 1</li>
+                <li style="font-family:Lato, sans-serif;color:#0a4e92;">Lorem ipsum dolor sit amet 2</li>
+                <li style="font-family:Lato, sans-serif;color:#0a4e92;">Lorem ipsum dolor sit amet 3</li>
+                <li style="font-family:Lato, sans-serif;color:rgb(10,78,146);">Lorem ipsum dolor sit amet 4</li>
+                <li style="font-family:Lato, sans-serif;color:rgb(10,78,146);">Lorem ipsum dolor sit amet 5</li>
+                <li style="font-family:Lato, sans-serif;color:rgb(10,78,146);">Lorem ipsum dolor sit amet 6</li>
+                <li style="font-family:Lato, sans-serif;color:rgb(10,78,146);">Lorem ipsum dolor sit amet 7</li>
+                <li style="font-family:Lato, sans-serif;color:rgb(10,78,146);">Lorem ipsum dolor sit amet 8</li>
+            </ul>
+            <button class="btn btn-outline-primary" type="submit" style="color:#0a4e92;">Select</button>
+            <p style="font-size:14px;color:rgba(33,37,41,0.63);">14-day money back guarantee</p>
+        </div>
+    </div>
+</div>{% endcomment %}

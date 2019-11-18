@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block static %}<link rel="stylesheet" href="{% static 'homepage/components/signup.css' %}">{% endblock %}
+{% block content %}
+    <div class="signup-img">
+        <div class="container pt-5 ">
+            <div class="mx-auto card col-md-6 signup-form">
+                <div class="card-body">
+                    <form class="form-signup" action="post">
+                        {% csrf_token %}
+                        <a href="{% url 'index' %}"><img class="mx-auto mt-4 d-block"
+                                                         src="{% static 'general/img/logo.png' %}"
+                                                         alt="Logo von Prodai"></a>
+
+                        <h1 class="text-center pt-5">Sign up</h1>
+
+                        <div class="form-group">
+                            <label for="signup-email-input">E-Mail Address</label>
+                            <input type="email" class="form-control" id="signup-email-input"
+                                   aria-describedby="email-info" placeholder="Enter your E-Mail">
+                            <small id="email-info" class="form-text text-muted">We'll never share your email with anyone
+                                else.
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-email-input">Password</label>
+                            <input type="password" class="form-control" placeholder="Enter Password">
+                            <input type="password" class="form-control mt-2" placeholder="Repeat Password">
+                        </div>
+                        <div class="row pl-3 pb-3">
+
+                            <label>
+                                <input type="checkbox">
+                            </label>
+
+                            <div class="text-left pl-3">
+                                <small id="checkbox-description">By registering, I confirm the <a href="">terms of
+                                    use</a>
+                                    and <a href="">privacy policy.</a></small>
+                            </div>
+                        </div>
+                        <a href="{% url 'signin' %}" class="stretched-link">Do you already have an account?</a>
+
+                        <button type="submit" class="btn btn-block btn-primary mt-3">Sign up</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

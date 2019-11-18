@@ -1,0 +1,50 @@
+{% comment %}
+    TODO Das bild und die Namen auf gleicher Ebene
+{% endcomment %}
+{% load static from staticfiles %}
+{% block static %}<link rel="stylesheet" href="{% static 'homepage/css/style.css' %}">{% endblock %}
+
+<div class="testimonials-clean">
+        <div class="container">
+            <div class="intro pb-4">
+                <h2 class="text-center pt-5">Testimonials</h2>
+                <h4 class="text-center text-muted">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                    tempor invidunt ut labore et dolore magna aliquyam</h4>
+            </div>
+            <div class="row testimonials text-center">
+                <div class="col-md-6 col-lg-4 item">
+                    <div class="box">
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus.
+                            Praesent aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                    </div>
+                    <div class="author">
+                        <img src="{% static 'general/img/testimonials/eli-defaria.png' %}" class="rounded-circle" alt="Photo by Eli DeFaria on Unsplash"/>
+                        <h5 class="name mb-0 mt-1">Eli Defaria</h5>
+                        <p class="title text-black-50">CEO of Company Inc.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 item">
+                    <div class="box">
+                        <p class="description">Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, et
+                            interdum justo suscipit id. Aliquam varius finibus est.</p>
+                    </div>
+                    <div class="author">
+                        <img src="{% static 'general/img/testimonials/foto-sushi.png' %}" class="rounded-circle" alt="Photo by Foto Sushi on Unsplash"/>
+                        <h5 class="name mb-0 mt-1">Carl Kent</h5>
+                        <p class="title text-black-50">Founder of Style Co.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 item">
+                    <div class="box">
+                        <p class="description">Aliquam varius finibus est, et interdum justo suscipit. Vulputate quis
+                            leo in, vehicula rhoncus lacus. Praesent aliquam in</p>
+                    </div>
+                    <div class="author">
+                        <img src="{% static 'general/img/testimonials/hannah-grace.png' %}" class="rounded-circle" alt="Photo by hannah grace on Unsplash"/>
+                        <h5 class="name mb-0 mt-1">Emily Clark</h5>
+                        <p class="title text-black-50">Owner of Creative Ltd.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,125 @@
+html,
+body,
+header,
+.signup-grid-container,
+#parallax {
+    height: 100%;
+    font-family: Lato, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* NAVBAR */
+.navbar-logo {
+    width: 100px;
+    height: 40px;
+}
+
+#parallax {
+    background: linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)
+    ), url("https://unsplash.it/1800/900?image=1051") no-repeat fixed center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#parallax > div > div > div.col-md-12.pt-5 > hr {
+    color: white;
+    height: 10px;
+}
+
+/* TESTIMONIALS */
+.name {
+    color: #0A4E92;
+}
+
+/* FUNCTIONS */
+.feature-card {
+    border: 2px solid rgba(0, 51, 102, 0.2);
+    border-radius: 3.125%;
+}
+
+.feature-card i {
+    padding-top: 20px;
+}
+
+/* PRICING */
+.price-num {
+  background-color: #ced0ce;
+  padding: 10px 0;
+  position: relative;
+}
+
+.money {
+  position: absolute;
+  top: 32%;
+  left: 22%;
+  font-size: 28px;
+
+}
+
+.money-num {
+  font-size: 70px;
+}
+
+.money-end {
+  font-size: 25px;
+}
+
+.price-num::after {
+  content: "";
+  position: absolute;
+  bottom: -19px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid #ced0ce;
+}
+
+#pricing .list-group-item {
+  position: relative;
+  font-size: 12px;
+
+}
+
+.first-list {
+  border-top: none!important;
+}
+
+
+.price-btn {
+  border: 2px solid #03A9F4;
+  margin-bottom: -20px;
+  text-decoration: none;
+  color: #003366;
+  background-color: #fff;
+}
+
+.price-btn:hover {
+  background-color: #03A9F4;
+    color: #fefefe;
+}
+
+.standard .price-num {
+  background-color: #03A9F4;
+    color: #fefefe;
+}
+
+.standard .price-num::after {
+  border-top: 20px solid #03A9F4;
+
+}
+
+/* FOOTER */
+

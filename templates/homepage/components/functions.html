@@ -1,0 +1,57 @@
+{% load staticfiles %}
+{% load static %}
+{% block static %}<link rel="stylesheet" href="{% static 'homepage/css/style.css' %}">{% endblock %}
+{% comment %}
+    TODO bei fontawesome eventuell css verwendden statt die svgs gucken ob resizing easy ist
+{% endcomment %}
+<div class="features-boxed pb-5">
+    <div class="container">
+        <div class="intro text-center pb-4">
+            <h2 class="pt-5">Functions</h2>
+            <h4>Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh
+                erat, pellentesque ut laoreet vitae.</h4>
+        </div>
+        <div class="row justify-content-center features pt-3">
+            <div class="col-sm-6 col-md-5 col-lg-3 item">
+                <div class="feature-card text-center">
+                    <i class="card-img-top fad fa-clouds fa-7x" style="--fa-primary-color: #0A4E92; --fa-secondary-color: #03A9F4;"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">Works everywhere</h5>
+                        <p class="card-text">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus.
+                        Praesent aliquam in tellus eu.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-5 col-lg-3 item">
+                <div class="feature-card text-center">
+                    <i class="card-img-top fad fa-pencil fa-7x" style="--fa-primary-color: #0A4E92; --fa-secondary-color: #03A9F4;"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">Customizable</h5>
+                        <p class="card-text">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus.
+                        Praesent aliquam in tellus eu.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-5 col-lg-3 item">
+                <div class="feature-card text-center">
+                    <i class="card-img-top fad fa-seedling fa-7x" style="--fa-primary-color: #0A4E92; --fa-secondary-color: #03A9F4;"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">Organic</h5>
+                        <p class="card-text">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus.
+                        Praesent aliquam in tellus eu.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-5 col-lg-3 item">
+                <div class="feature-card text-center">
+                    <i class="card-img-top fad fa-tachometer-alt-fastest fa-7x" style="--fa-primary-color: #0A4E92; --fa-secondary-color: #03A9F4;"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">Fast</h5>
+                        <p class="card-text">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus.
+                        Praesent aliquam in tellus eu.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
