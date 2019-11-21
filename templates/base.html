@@ -3,24 +3,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Prodai {% block title %}{% endblock %}</title>
 
     {% load static %}
     {% load staticfiles %}
 
-    {# Load the Tag Library #}
+    {% comment %} BOOTSTRAP {% endcomment %}
     {% load bootstrap4 %}
     {% bootstrap_css %}
-    {% bootstrap_javascript %}
+
+    {% comment %} FONTAWESOME {% endcomment %}
     <link rel="stylesheet" href="{% static 'frameworks/fontawesome/css/all.css' %}">
     <link rel="stylesheet" href="{% static 'frameworks/fontawesome/css/duotone.css' %}">
 
+    {% comment %} CUSTOME STYLE CSS {% endcomment %}
     <link rel="stylesheet" href="{% static 'homepage/css/style.css' %}" />
+
     {% block static %}{% endblock %}
 
     <link rel="shortcut icon" href="{% static 'general/favicon/favicon.ico' %}">
 </head>
 <body>
     {% block content %}{% endblock %}
+
+    {% bootstrap_javascript jquery="slim"%}
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

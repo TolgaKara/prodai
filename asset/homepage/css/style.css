@@ -16,6 +16,12 @@ body {
     padding: 0;
 }
 
+/* NAVBAR */
+.navbar-logo {
+    width: 100px;
+    height: 40px;
+}
+
 #parallax {
     background: linear-gradient(
             rgba(0, 0, 0, 0.7),
@@ -48,13 +54,13 @@ body {
 }
 
 /* PRICING */
-#pricing .price-num {
+.price-num {
   background-color: #ced0ce;
   padding: 10px 0;
   position: relative;
 }
 
-#pricing .money {
+.money {
   position: absolute;
   top: 32%;
   left: 22%;
@@ -62,15 +68,15 @@ body {
 
 }
 
-#pricing .money-num {
+.money-num {
   font-size: 70px;
 }
 
-#pricing .money-end {
+.money-end {
   font-size: 25px;
 }
 
-#pricing .price-num::after {
+.price-num::after {
   content: "";
   position: absolute;
   bottom: -19px;
@@ -87,30 +93,31 @@ body {
 
 }
 
-#pricing .first-list {
+.first-list {
   border-top: none!important;
 }
 
 
-#pricing .price-btn {
-  border: 2px solid #f15025;
+.price-btn {
+  border: 2px solid #03A9F4;
   margin-bottom: -20px;
   text-decoration: none;
-  color: #f15025;
+  color: #003366;
   background-color: #fff;
 }
 
-#pricing .price-btn:hover {
-  background-color: #242a33;
-  border: 2px solid #242a33;
+.price-btn:hover {
+  background-color: #03A9F4;
+    color: #fefefe;
 }
 
-#pricing .premium .price-num {
-  background-color: #f15025;
+.standard .price-num {
+  background-color: #03A9F4;
+    color: #fefefe;
 }
 
-#pricing .premium .price-num::after {
-  border-top: 20px solid #f15025;
+.standard .price-num::after {
+  border-top: 20px solid #03A9F4;
 
 }
 

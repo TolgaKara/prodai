@@ -1,26 +1,22 @@
-.signup-grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas: "signup-form signup-img signup-img signup-img" "signup-form signup-img signup-img signup-img" "signup-form signup-img signup-img signup-img";
+
+.signup-form {
+    background-color: rgba(255,255,255,.85);
+    box-shadow: 0 0 30px black;
 }
 
 .signup-img {
-    grid-area: signup-img;
      background: linear-gradient(
             rgba(0, 0, 0, 0.7),
             rgba(0, 0, 0, 0.7)
     ), url("https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80") no-repeat fixed center center;
-     -webkit-background-size: cover;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-
+    height: 100%;
+    overflow: hidden;
 }
 
-.signup-form {
-    grid-area: signup-form;
-}
 
 
 input[type="checkbox"] {
@@ -61,7 +57,7 @@ input:checked[type="checkbox"]:before {
 }
 
 #checkbox-description {
- letter-spacing: 0px;
+ letter-spacing: 0;
     line-height: 1.5;
 }
 
@@ -69,7 +65,5 @@ input:checked[type="checkbox"]:before {
 
 /*MEDIA QUERIES*/
 @media screen and (max-width: 700px){
-    .signup-grid-container {
-        display: none;
-    }
+
 }
