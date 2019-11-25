@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% load static from staticfiles %}
-{% block static %}<link rel="stylesheet" href="{% static 'homepage/components/signin.css' %}">{% endblock %}
+{% block static %}<link rel="stylesheet" href="{% static 'css/signin.css' %}">{% endblock %}
 {% block content %}
-    <div class="signup-img">
+    <div class="signin-img">
         <div class="container pt-5 ">
-            <div class="mx-auto card col-md-6 signup-form">
+            {% comment %} ALERTS {% endcomment %}
+            {% include 'homepage/partials/_alerts.html' %}
+            <div class="mx-auto card col-md-6 signin-form">
                 <div class="card-body">
-                    <form class="form-signup" action="post">
+                    <form class="form-signin" action="{% url 'signin' %}" method="POST">
                         {% csrf_token %}
                         <a href="{% url 'index' %}"><img class="mx-auto mt-4 d-block"
                                                          src="{% static 'general/img/logo.png' %}"
@@ -15,13 +17,13 @@
                         <h1 class="text-center pt-5">Sign in</h1>
 
                         <div class="form-group">
-                            <label for="signup-email-input">E-Mail Address</label>
-                            <input type="email" class="form-control" id="signup-email-input"
-                                   aria-describedby="email-info" placeholder="Enter your E-Mail">
+                            <label for="signin-username-input">Username</label>
+                            <input type="username" class="form-control" id="signin-username-input"
+                                   name="username" placeholder="Enter your Username">
                         </div>
                         <div class="form-group">
-                            <label for="signup-email-input">Password</label>
-                            <input type="password" class="form-control" placeholder="Enter Password">
+                            <label for="signin-password-input">Password</label>
+                            <input type="password" class="form-control" name="password" placeholder="Enter Password">
                         </div>
                         <a href="{% url 'signup' %}" class="stretched-link">Create new account</a>
 

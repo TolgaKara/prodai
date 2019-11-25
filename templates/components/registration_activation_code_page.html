@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block content %}
+    <div class="container col-md-4">
+        {% comment %} ALERTS {% endcomment %}
+        {% include 'homepage/partials/_alerts.html' %}
+        <div class="card mx-auto">
+            <div class="card-header bg-success text-light">
+                <i class="fas fa-check fa-lg"></i>
+                <strong class="pl-2">Successfully registered. One more Step</strong>
+            </div>
+            <div class="card-body">
+                <span>
+                    We've sent a confirmation to your e-mail for verification.
+                    The registration is completed after your type in the code.
+                    <br>
+                    <strong>E-Mail:</strong> {{ email }}
+                    <hr class="bg-success">
+                </span>
+
+
+                <form class="pt-1" id="submit_code" action="{% url 'complete_registration' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Activation Code</label>
+                        <input type="text" class="form-control" id="activation_code" aria-describedby="activation_code"
+                               name="activation_code" placeholder="Enter your activation code" required>
+                    </div>
+                    <input type="hidden" name="activation_code2" value="{{ activation_key }}">
+                    <input type="hidden" name="username" value="{{ username }}">
+                    <input type="hidden" name="email" value="{{ email }}">
+                    <input type="hidden" name="password" value="{{ password }}">
+                    <input type="hidden" name="first_name" value="{{ first_name}}">
+                    <input type="hidden" name="last_name" value="{{ last_name }}">
+
+
+                    <button type="submit" class="btn btn-success w-100 rounded-0 font-weight-bold">Submit <i class="far fa-paper-plane pl-2 fa-lg"></i></button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

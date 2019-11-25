@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 {% load static from staticfiles %}
-{% block static %}<link rel="stylesheet" href="{% static 'homepage/components/signup.css' %}">{% endblock %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">{% endblock %}
 {% block content %}
     <div class="signup-img">
-        <div class="container pt-5 ">
+        <div class="container">
+            {% comment %} ALERTS {% endcomment %}
+            {% include 'homepage/partials/_alerts.html' %}
             <div class="mx-auto card col-md-6 signup-form">
                 <div class="card-body">
-                    <form class="form-signup" action="post">
+                    <form class="form-signup" action="{% url 'signup' %}" method="POST">
                         {% csrf_token %}
                         <a href="{% url 'index' %}"><img class="mx-auto mt-4 d-block"
                                                          src="{% static 'general/img/logo.png' %}"
@@ -15,22 +18,39 @@
                         <h1 class="text-center pt-5">Sign up</h1>
 
                         <div class="form-group">
+                            <label for="signup-firstname-input">First Name</label>
+                            <input type="text" class="form-control" id="signup-firstname-input"
+                                   name="first_name" aria-describedby="firstname-info" placeholder="Enter your First Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="signup-lastname-input">Last Name</label>
+                            <input type="text" class="form-control" id="signup-lastname-input"
+                                   name="last_name" aria-describedby="lastname-info" placeholder="Enter your Last Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-username-input">Username</label>
+                            <input type="text" class="form-control" id="signup-username-input"
+                                   name="username" aria-describedby="email-info" placeholder="Enter your Username" required>
+                        </div>
+
+                        <div class="form-group">
                             <label for="signup-email-input">E-Mail Address</label>
                             <input type="email" class="form-control" id="signup-email-input"
-                                   aria-describedby="email-info" placeholder="Enter your E-Mail">
+                                   name="email" aria-describedby="email-info" placeholder="Enter your E-Mail" required>
                             <small id="email-info" class="form-text text-muted">We'll never share your email with anyone
                                 else.
                             </small>
                         </div>
                         <div class="form-group">
                             <label for="signup-email-input">Password</label>
-                            <input type="password" class="form-control" placeholder="Enter Password">
-                            <input type="password" class="form-control mt-2" placeholder="Repeat Password">
+                            <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
+                            <input type="password" class="form-control mt-2" name="repeated_password" placeholder="Repeat Password" required>
                         </div>
                         <div class="row pl-3 pb-3">
 
                             <label>
-                                <input type="checkbox">
+                                <input name="checkbox" type="checkbox" value="checked">
                             </label>
 
                             <div class="text-left pl-3">

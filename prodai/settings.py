@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
 
     # My own apps
     'src.homepage.apps.HomepageConfig',
+    'src.accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -79,7 +81,7 @@ WSGI_APPLICATION = 'prodai.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DB_NAME','prodai'),
+        'NAME': os.environ.get('DB_NAME', 'prodai'),
         'USER': os.environ.get('DB_USER', 'postgres'),
         'PASSWORD': os.environ.get('DB_PASS', 'qweasdyxc123'),
         'HOST': 'localhost',
@@ -130,9 +132,25 @@ VENV_PATH = os.path.dirname(BASE_DIR)
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'asset')
 
-MEDIA_URL = '/media/'
 
+# MEDIA URL AND ROOT
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-ALLOWED_HOSTS = ['*']
+# Email
+#   Hushmail
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'contact.prodai@gmail.com'
+EMAIL_HOST_PASSWORD = '^%9$1Nv2CjA6'
+
+# Messages
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
+
+
 

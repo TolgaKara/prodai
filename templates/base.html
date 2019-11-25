@@ -19,8 +19,10 @@
     <link rel="stylesheet" href="{% static 'frameworks/fontawesome/css/all.css' %}">
     <link rel="stylesheet" href="{% static 'frameworks/fontawesome/css/duotone.css' %}">
 
+
     {% comment %} CUSTOME STYLE CSS {% endcomment %}
     <link rel="stylesheet" href="{% static 'homepage/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/tooltip.css' %}" />
 
     {% block static %}{% endblock %}
 
@@ -29,7 +31,11 @@
 <body>
     {% block content %}{% endblock %}
 
-    {% bootstrap_javascript jquery="slim"%}
+    {% comment %}BOOTSTRAP JS ANS JQUERY{% endcomment %}
+    {% bootstrap_javascript jquery=True %}
+
+
+    {% comment %}GENERAL FUNCTIONALITY LIKE GETTING THE DATE FOR COPYRIGHT{% endcomment %}
     <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
