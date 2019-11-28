@@ -1,0 +1,77 @@
+{% load static from staticfiles %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'auth/style.css' %}">
+{% endblock %}
+<nav class="navbar navbar-light bg-white">
+    <a class="navbar-brand" href="#">
+        <img src="{% static 'general/img/logo.png' %}" alt="Prodai Company Logo">
+    </a>
+
+    <ul class="nav justify-content-end">
+
+        <li class="nav-item mt-2">
+            <a
+                     {% if 'dashboard' in request.path %}
+                        class="nav-link active"
+                    {% else %}
+                        class="nav-link"
+                    {% endif %}
+                    id="nav-link" href="{% url 'dashboard' %}"><i class="fas fa-home pr-2"></i>Dashboard</a>
+        </li>
+        <li class="nav-item mt-2">
+            <a
+                     {% if 'timetracking' in request.path %}
+                        class="nav-link active"
+                    {% else %}
+                        class="nav-link"
+                    {% endif %}
+                    href="{% url 'timetracking' %}"><i class="fas fa-clock pr-2"></i>Time Tracking</a>
+        </li>
+        <li class="nav-item mt-2">
+            <a
+                     {% if 'analytics' in request.path %}
+                        class="nav-link active"
+                    {% else %}
+                        class="nav-link"
+                    {% endif %}
+                    href="{% url 'analytics' %}"><i class="fas fa-analytics pr-2"></i>Analytics</a>
+        </li>
+        <li class="nav-item mt-2">
+            <a
+                    {% if 'projectmanagment' in request.path %}
+                        class="nav-link active"
+                    {% else %}
+                        class="nav-link"
+                    {% endif %}
+                        href="{% url 'projectmanagment' %}"><i class="fas fa-project-diagram pr-2"></i>Project
+                Management</a>
+        </li>
+        <li class="nav-item mt-2">
+            <a
+                     {% if 'team' in request.path %}
+                        class="nav-link active"
+                    {% else %}
+                        class="nav-link"
+                    {% endif %}
+                    href="{% url 'team' %}"><i class="fas fa-users pr-2"></i>Team</a>
+        </li>
+        <div class="vertical-line"></div>
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+               aria-expanded="false">
+                <img src="{% static 'general/img/testimonials/foto-sushi.png' %}" alt="">
+                Username <i class="fas fa-arrow-down my-auto"></i>
+            </a>
+
+
+            <div class="dropdown-menu dropdown-menu-right mt-1">
+                <a class="dropdown-item" href="#">Profile</a>
+                <a class="dropdown-item" href="#">Settings</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item text-danger" href="#">Logout</a>
+            </div>
+        </li>
+    </ul>
+
+</nav>

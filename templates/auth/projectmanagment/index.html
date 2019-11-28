@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load static from staticfiles %}
+{% block title %}Project Management{% endblock %}
+
+{% block static %}
+    <link rel="stylesheet" href="{% static 'auth/projectmanagment/style.css' %}">
+{% endblock %}
+
+
+
+{% block content %}
+    {% include 'auth/partials/_navbar.html' %}
+
+{% endblock %}

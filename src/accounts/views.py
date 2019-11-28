@@ -41,7 +41,7 @@ def complete_registration(request):
                     'last_name': last_name}
             )
 
-            return render(request, 'auth/dashboard/dashboard.html')
+            return render(request, 'auth/dashboard/index.html')
 
     else:
         print('GET')

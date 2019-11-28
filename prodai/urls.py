@@ -22,8 +22,20 @@ from django.conf import settings
 from src.homepage import views
 
 urlpatterns = [
-    path('', include('src.homepage.urls')),
+    # Webpages for authenticated Users
+    path('dashboard', include('src.dashboard.urls')),
+    path('timetracking', include('src.timetracking.urls')),
+    path('analytics', include('src.analytics.urls')),
+    path('projectmanagment', include('src.projectmanagment.urls')),
+    path('team', include('src.team.urls')),
+
+    # Webpages both for authenticated and not authenticated Users
     path('accounts/', include('src.accounts.urls')),
+
+    # Webpages for not authenticated users
+    path('', include('src.homepage.urls')),
+
+    # Webpages for admins
     path('admin/', admin.site.urls),
 ]
 
