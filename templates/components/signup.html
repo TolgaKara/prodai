@@ -11,9 +11,9 @@
                 <div class="card-body">
                     <form class="form-signup" action="{% url 'signup' %}" method="POST">
                         {% csrf_token %}
-                        <a href="{% url 'index' %}"><img class="mx-auto mt-4 d-block"
-                                                         src="{% static 'general/img/logo.png' %}"
-                                                         alt="Logo von Prodai"></a>
+                        <a href="{% url 'homepage' %}"><img class="mx-auto mt-4 d-block"
+                                                            src="{% static 'general/img/logo.png' %}"
+                                                            alt="Logo von Prodai"></a>
 
                         <h1 class="text-center pt-5">Sign up</h1>
 

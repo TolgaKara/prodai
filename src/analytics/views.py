@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
 
 # Create your views here.
 def analytics(request):
-    return render(request, 'auth/analytics/index.html')
+    if request.user.is_authenticated:
+        return render(request, 'auth/analytics/index.html')
+    else:
+        return redirect('homepage')

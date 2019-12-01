@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
 
 # Create your views here.
 def timetracking(request):
-    return render(request, 'auth/timetracking/index.html')
+    if request.user.is_authenticated:
+        return render(request, 'auth/timetracking/index.html')
+    else:
+        return redirect('homepage')

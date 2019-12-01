@@ -9,13 +9,74 @@
 
 {% block content %}
     {% include 'auth/partials/_navbar.html' %}
+    {% include 'homepage/partials/_alerts.html' %}
     <div class="overflow-hidden">
         <div class="container">
             <div class="row">
-                <div class="col-12-lg col-6-md" id="timetracking-box">
-                    <p class="display-4">dd</p>
+                {% comment %}GENERAL TIME BOX{% endcomment %}
+                <div class="box col-md-12 w-100">
+                    <div class="col-md-4 col-sm-12">
+                        <p class="display-3">12:45 Uhr</p>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                        <p class="display-5">Weekday</p>
+                        <p class="display-5">Date</p>
+                        <p class="display-5">Weather</p>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                        <p class="display-5">Time Cycle</p>
+                    </div>
+
                 </div>
             </div>
+
+                {% comment %}Time Tracking box{% endcomment %}
+                <div class="row mt-3">
+                <div class="box col-md-4 col-sm-12">
+                    <h2>Total working hours</h2>
+                </div>
+                <div class="box col-md-3 col-sm-12 ml-md-auto">
+                    <h2>Time</h2>
+                </div>
+                <div class="box col-md-3 col-sm-12 ml-md-auto">
+                    <h2>Time</h2>
+                </div>
+                </div>
+
+                {% comment %}Analytics box{% endcomment %}
+                <div class="row mt-3">
+                <div class="box col-md-4 col-sm-12">
+                    <h2>Analytics</h2>
+                </div>
+                <div class="box col-md-3 col-sm-12 ml-md-auto">
+                    <h2>Analytics</h2>
+                </div>
+                <div class="box col-md-3 col-sm-12 ml-md-auto">
+                    <h2>Analytics</h2>
+                </div>
+                </div>
+
+                {% comment %}Project Management box{% endcomment %}
+            <div class="row mt-3">
+                <div class="box col-md-12 col-sm-12">
+                    <h2>Project Management</h2>
+                </div>
+
+                </div>
+
+                {% comment %}Team Box{% endcomment %}
+                <div class="row mt-3">
+                <div class="box col-md-5 col-sm-12">
+                    <h2>Team</h2>
+                </div>
+                <div class="box col-md-5 col-sm-12 ml-md-auto">
+                    <h2>Team</h2>
+                </div>
+                </div>
+
+
         </div>
 
 

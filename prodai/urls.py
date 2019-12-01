@@ -20,6 +20,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from django.conf import settings
 from src.homepage import views
+from src.accounts import views
 
 urlpatterns = [
     # Webpages for authenticated Users
@@ -28,6 +29,9 @@ urlpatterns = [
     path('analytics', include('src.analytics.urls')),
     path('projectmanagment', include('src.projectmanagment.urls')),
     path('team', include('src.team.urls')),
+    path('profile', views.profile_view, name='profile'),
+    path('settings', include('src.settings.urls')),
+
 
     # Webpages both for authenticated and not authenticated Users
     path('accounts/', include('src.accounts.urls')),
