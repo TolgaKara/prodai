@@ -32,6 +32,8 @@ urlpatterns = [
     path('profile', views.profile_view, name='profile'),
     path('settings', include('src.settings.urls')),
 
+    # API Interface
+    path('api/v1', include('src.api.urls')),
 
     # Webpages both for authenticated and not authenticated Users
     path('accounts/', include('src.accounts.urls')),
