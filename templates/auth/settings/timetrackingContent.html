@@ -1,0 +1,83 @@
+{% load static %}
+<div class="col-lg-12 pt-3 text-center">
+    <h1 class="display-4">Settings for you time tracking</h1>
+    <p class="display-5 description">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi assumenda corporis cumque doloribus <br>
+        ea illum necessitatibus quidem rerum, voluptatum. Amet animi ducimus, <br>
+        ex inventore iusto labore nobis nostrum perspiciatis.
+    </p>
+</div>
+
+<div class="container">
+
+    <form class="form-horizontal" action="{% comment %}{% url '' %}{% endcomment %}" method="POST">
+        <div class="control-group">
+            <label for="timecycle" class="control-label" id="label-text">Time Cycle</label>
+            <div class="controls">
+                <select name="cars" class="custom-select" id="timecycleSelection">
+                    {% comment %}
+                        TODO The default setting should be saved for the user in the database
+                    {% endcomment %}
+                    <option value="default" selected>default - Track all the time</option>
+                    <option value="pomodoro_general">pomodoro general - 25 | 5 | 15 | 4</option>
+                    <option value="pomodoro_work">pomodoro work - 50 | 10 | 20 | 2</option>
+                    <option value="pomodoro_personal">pomodoro personal - 30 | 2 | 25 | 4</option>
+                    <option value="custom">custom</option>
+                </select>
+
+                <div class="pt-3 d-none" id="customTimeUserInput">
+                    <div class="input-group pt-4">
+                        <label class="my-auto" for="workingtime" id="label-text">Working Time</label>
+                        <input type="number" class="form-control ml-5" placeholder="Enter your working time in minutes"
+                               id="workingtime" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text">minutes</span>
+                        </div>
+                    </div>
+
+
+                    <div class="input-group pt-2">
+                        <label class="my-auto" for="shortbreaktime" id="label-text">Short break Time</label>
+                        <input type="number" class="form-control ml-5"
+                               placeholder="Enter your short break time in minutes"
+                               id="shortbreaktime" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text">minutes</span>
+                        </div>
+                    </div>
+
+
+                    <div class="input-group pt-2">
+                        <label class="my-auto" for="longbreaktime" id="label-text">Long break Time</label>
+                        <input type="number" class="form-control ml-5"
+                               placeholder="Enter your long break time in minutes"
+                               id="longbreaktime" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text">minutes</span>
+                        </div>
+                    </div>
+
+
+                    <div class="input-group pt-2">
+                        <label class="my-auto" for="cycles" id="label-text">Cycle</label>
+                        <input type="number" class="form-control ml-5" placeholder="Enter your number of cycles"
+                               id="cycles" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text">cycle</span>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-primary mx-auto mt-5"><i class="fas fa-paper-plane"></i> Save
+                    </button>
+                </div>
+            </div>
+    </form>
+</div>

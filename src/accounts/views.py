@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from . import models
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from src.settings.models import TimeTrackingSetting
 
 
 def complete_registration(request):
@@ -27,6 +28,10 @@ def complete_registration(request):
                                             first_name=first_name,
                                             last_name=last_name)
             user.save()
+
+            user_setting = TimeTrackingSetting.objects.create(user=user, timetracking_name='default', workingtime=0, short_break=0, long_break=0, cycle=0)
+            user_setting.save()
+
             return redirect('dashboard')
         else:
             messages.error(request, 'The activation code is wrong')
@@ -41,8 +46,6 @@ def complete_registration(request):
                     'first_name': first_name,
                     'last_name': last_name}
             )
-
-            return render(request, 'auth/dashboard/index.html')
 
     else:
         print('GET')

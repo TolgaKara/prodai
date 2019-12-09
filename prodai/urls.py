@@ -24,13 +24,13 @@ from src.accounts import views
 
 urlpatterns = [
     # Webpages for authenticated Users
-    path('dashboard', include('src.dashboard.urls')),
-    path('timetracking', include('src.timetracking.urls')),
-    path('analytics', include('src.analytics.urls')),
-    path('projectmanagment', include('src.projectmanagment.urls')),
-    path('team', include('src.team.urls')),
-    path('profile', views.profile_view, name='profile'),
-    path('settings', include('src.settings.urls')),
+    path('dashboard/', include('src.dashboard.urls')),
+    path('timetracking/', include('src.timetracking.urls')),
+    path('analytics/', include('src.analytics.urls')),
+    path('projectmanagment/', include('src.projectmanagment.urls')),
+    path('team/', include('src.team.urls')),
+    path('profile/', views.profile_view, name='profile'),
+    path('settings/', include('src.settings.urls')),
 
     # API Interface
     path('api/v1', include('src.api.urls')),

@@ -14,6 +14,7 @@
     {% comment %} BOOTSTRAP {% endcomment %}
     {% load bootstrap4 %}
     {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
 
     {% comment %} FONTAWESOME {% endcomment %}
     <link rel="stylesheet" href="{% static 'frameworks/fontawesome/css/all.css' %}">
@@ -32,7 +33,7 @@
     {% block content %}{% endblock %}
 
     {% comment %}BOOTSTRAP JS ANS JQUERY{% endcomment %}
-    {% bootstrap_javascript jquery=True %}
+    {% comment %}{% bootstrap_javascript jquery=True %}{% endcomment %}
 
 
     {% comment %}GENERAL FUNCTIONALITY LIKE GETTING THE DATE FOR COPYRIGHT{% endcomment %}

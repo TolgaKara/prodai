@@ -55,6 +55,7 @@
                     {% endif %}
                     href="{% url 'team' %}"><i class="fas fa-users pr-2"></i>Team</a>
         </li>
+
         <div class="vertical-line"></div>
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
@@ -64,7 +65,7 @@
             </a>
 
 
-            <div class="dropdown-menu dropdown-menu-right mt-1">
+            <div class="dropdown-menu dropdown-menu-right mt-1" id="dropdown">
                 <a class="dropdown-item dropdown-link" href="{% url 'profile' %}"><i class="fas fa-user-circle pr-1"></i>Profile</a>
                 <a class="dropdown-item dropdown-link" href="{% url 'settings' %}"><i class="fas fa-cog pr-1"></i>Settings</a>
                 <div class="dropdown-divider"></div>

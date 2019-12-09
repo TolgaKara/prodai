@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # My own apps
     'src.homepage.apps.HomepageConfig',
     'src.accounts.apps.AccountsConfig',
+    'src.settings.apps.SettingsConfig',
 ]
 
 MIDDLEWARE = [
@@ -151,6 +152,12 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+# Weather API key from OpenWeather 60 request per min
+OpenWeatherAPI = '6b5e84306b8f98f2e0679fbeac3b3f12'
+
+# GeoIP Path to look at
+GEOIP_PATH = os.path.join(BASE_DIR, 'geoip/')
 
 
 

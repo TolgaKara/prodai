@@ -12,24 +12,29 @@
     {% include 'homepage/partials/_alerts.html' %}
     <div class="overflow-hidden">
         <div class="container">
-            <div class="row">
+            <div class="row box">
                 {% comment %}GENERAL TIME BOX{% endcomment %}
-                <div class="box col-md-12 w-100">
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-4 col-sm-12 text-center">
                         <p class="display-3">12:45 Uhr</p>
                     </div>
 
-                    <div class="col-md-4 col-sm-12">
-                        <p class="display-5">Weekday</p>
-                        <p class="display-5">Date</p>
-                        <p class="display-5">Weather</p>
+                    <div class="col-md-4 col-sm-12 text-center">
+                        <p class="display-5"><strong>{{ weekday }}</strong></p>
+                        <p class="display-5"><i class="fas fa-calendar-alt"></i> {{ date }}</p>
                     </div>
 
-                    <div class="col-md-4 col-sm-12">
-                        <p class="display-5">Time Cycle</p>
-                    </div>
+                <div class="col-md-4 col-sm-12 text-center">
+                        {% if timetracking_code == 'default' %}
+                            <p class="display-5"><strong>Time Cycle: </strong> {{ timetracking_name }}</p>
+                        {% else %}
+                            <p class="display-5"><strong>Time Cycle: </strong> {{ timetracking_name }}</p>
+                            <p class="display-5"><strong>Time Cycle: </strong> {{ timetracking_working_time }}</p>
+                            <p class="display-5"><strong>Time Cycle: </strong> {{ timetracking_short_break }}</p>
+                            <p class="display-5"><strong>Time Cycle: </strong> {{ timetracking_long_break }}</p>
+                            <p class="display-5"><strong>Time Cycle: </strong> {{ timetracking_cycle }}</p>
+                        {% endif %}
 
-                </div>
+                    </div>
             </div>
 
                 {% comment %}Time Tracking box{% endcomment %}

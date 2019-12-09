@@ -3,6 +3,7 @@
 {% load static from staticfiles %}
 
 {% block static %}
+    <link rel="stylesheet" href="{% static 'auth/settings/style.css' %}">
 
 {% endblock %}
 
@@ -11,10 +12,45 @@
 {% endblock %}
 
 {% block content %}
-    {% comment %}
-    TODO muss noch gemacht werden
-    {% endcomment %}
-    Topbar <br>
-    Sidebar mit den Settings möglichkeiten <br>
-    Forms <br>
+
+    <div class="wrapper">
+        {% comment %} Sidebar {% endcomment %}
+        {% include 'auth/settings/sidebar.html' %}
+
+    </div>
+
+    {% comment %}Pagecontent{% endcomment %}
+    <div id="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <a href="#" id="menu-toggle"><i class="fas fa-angle-right fa-lg"></i></a>
+                <img class="pl-2" src="{% static 'general/img/logo.png' %}" alt="Logo von Prodai"
+                     style="width: 100px; height: 25px">
+            </div>
+    {% if content == 'home' %}
+        {% include 'auth/settings/homeContent.html' %}
+    {% elif content == 'profile' %}
+        {% include 'auth/settings/profileContent.html' %}
+    {% elif content == 'timetracking' %}
+        {% include 'auth/settings/timetrackingContent.html' %}
+    {% elif content == 'analytics' %}
+        {% include 'auth/settings/analyticsContent.html' %}
+    {% elif content == 'projectmanagement' %}
+        {% include 'auth/settings/projectmanagementContent.html' %}
+    {% elif content == 'team' %}
+        {% include 'auth/settings/teamContent.html' %}
+    {% elif content == 'company' %}
+        {% include 'auth/settings/companyContent.html' %}
+    {% elif content == 'authentication' %}
+        {% include 'auth/settings/authenticationContent.html' %}
+    {% endif %}
+        </div>
+    </div>
+    </div>
+
+
+
+    <script src="{% static 'js/sidebar-menu.js' %}"></script>
+    <script src="{% static 'js/settings.js' %}"></script>
 {% endblock %}
