@@ -25,8 +25,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <a href="#" id="menu-toggle"><i class="fas fa-angle-right fa-lg"></i></a>
-                <img class="pl-2" src="{% static 'general/img/logo.png' %}" alt="Logo von Prodai"
-                     style="width: 100px; height: 25px">
+                <a href="{% url 'dashboard' %}"><img class="pl-2" src="{% static 'general/img/logo.png' %}" alt="Logo von Prodai"
+                     style="width: 100px; height: 25px"></a>
             </div>
     {% if content == 'home' %}
         {% include 'auth/settings/homeContent.html' %}

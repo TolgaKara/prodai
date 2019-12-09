@@ -10,26 +10,51 @@
 
 <div class="container">
 
-    <form class="form-horizontal" action="{% comment %}{% url '' %}{% endcomment %}" method="POST">
+    <form class="form-horizontal" action="{% url 'timetracking_changed_settings' %}" method="POST">
+        {% csrf_token %}
         <div class="control-group">
             <label for="timecycle" class="control-label" id="label-text">Time Cycle</label>
             <div class="controls">
-                <select name="cars" class="custom-select" id="timecycleSelection">
-                    {% comment %}
-                        TODO The default setting should be saved for the user in the database
-                    {% endcomment %}
-                    <option value="default" selected>default - Track all the time</option>
-                    <option value="pomodoro_general">pomodoro general - 25 | 5 | 15 | 4</option>
-                    <option value="pomodoro_work">pomodoro work - 50 | 10 | 20 | 2</option>
-                    <option value="pomodoro_personal">pomodoro personal - 30 | 2 | 25 | 4</option>
-                    <option value="custom">custom</option>
+                <select name="timetracking_option" class="custom-select" id="timetracking-option">
+
+                    <option value="default, Track all the time, 0, 0, 0, 0" name="default"
+                        {% if timetracking_option == 'default' %}
+                            selected
+                        {% endif %}
+                    > default - Track all the time </option>
+
+                    <option value="pomodoro_general, Pomodoro General, 25, 5, 15, 4" name="pomodoro_general"
+                        {% if timetracking_option == 'pomodoro_general' %}
+                            selected
+                        {% endif %}
+                    > pomodoro general - 25 | 5 | 15 | 4 </option>
+
+                    <option value="pomodoro_work, Pomodoro Work, 50, 10, 20, 2" name="pomodoro_work"
+                        {% if timetracking_option == 'pomodoro_work' %}
+                            selected
+                        {% endif %}
+                    > pomodoro work - 50 | 10 | 20 | 2 </option>
+
+                    <option value="pomodoro_personal, Pomodoro Personal, 30, 2, 25, 4" name="pomodoro_personal"
+                        {% if timetracking_option == 'pomodoro_personal' %}
+                            selected
+                        {% endif %}
+                    > pomodoro personal - 30 | 2 | 25 | 4 </option>
+
+                    <option value="custom" name="custom"
+                        {% if timetracking_option == 'custom' %}
+                            selected
+                        {% endif %}
+                    > custom </option>
+
+
                 </select>
 
                 <div class="pt-3 d-none" id="customTimeUserInput">
                     <div class="input-group pt-4">
                         <label class="my-auto" for="workingtime" id="label-text">Working Time</label>
                         <input type="number" class="form-control ml-5" placeholder="Enter your working time in minutes"
-                               id="workingtime" required>
+                               id="workingtime">
                         <div class="input-group-append">
                             <span class="input-group-text">minutes</span>
                         </div>
@@ -40,7 +65,7 @@
                         <label class="my-auto" for="shortbreaktime" id="label-text">Short break Time</label>
                         <input type="number" class="form-control ml-5"
                                placeholder="Enter your short break time in minutes"
-                               id="shortbreaktime" required>
+                               id="shortbreaktime">
                         <div class="input-group-append">
                             <span class="input-group-text">minutes</span>
                         </div>
@@ -51,7 +76,7 @@
                         <label class="my-auto" for="longbreaktime" id="label-text">Long break Time</label>
                         <input type="number" class="form-control ml-5"
                                placeholder="Enter your long break time in minutes"
-                               id="longbreaktime" required>
+                               id="longbreaktime">
                         <div class="input-group-append">
                             <span class="input-group-text">minutes</span>
                         </div>
@@ -61,7 +86,7 @@
                     <div class="input-group pt-2">
                         <label class="my-auto" for="cycles" id="label-text">Cycle</label>
                         <input type="number" class="form-control ml-5" placeholder="Enter your number of cycles"
-                               id="cycles" required>
+                               id="cycles">
                         <div class="input-group-append">
                             <span class="input-group-text">cycle</span>
                         </div>
@@ -79,5 +104,6 @@
                     </button>
                 </div>
             </div>
+        </div>
     </form>
 </div>

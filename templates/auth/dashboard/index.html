@@ -27,11 +27,11 @@
                         {% if timetracking_code == 'default' %}
                             <p class="display-5"><strong>Time Cycle: </strong> {{ timetracking_name }}</p>
                         {% else %}
-                            <p class="display-5"><strong>Time Cycle: </strong> {{ timetracking_name }}</p>
-                            <p class="display-5"><strong>Time Cycle: </strong> {{ timetracking_working_time }}</p>
-                            <p class="display-5"><strong>Time Cycle: </strong> {{ timetracking_short_break }}</p>
-                            <p class="display-5"><strong>Time Cycle: </strong> {{ timetracking_long_break }}</p>
-                            <p class="display-5"><strong>Time Cycle: </strong> {{ timetracking_cycle }}</p>
+                            <p class="display-5"><strong>Time Option: </strong> {{ timetracking_name }}</p>
+                            <p class="display-5"><strong>Working Time: </strong> {{ timetracking_working_time }} min</p>
+                            <p class="display-5"><strong>Short Break: </strong> {{ timetracking_short_breaks }} min</p>
+                            <p class="display-5"><strong>Long Break: </strong> {{ timetracking_long_breaks }} min</p>
+                            <p class="display-5"><strong>Time Cycle: </strong> {{ timetracking_cycle }} min</p>
                         {% endif %}
 
                     </div>

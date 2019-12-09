@@ -11,4 +11,8 @@ urlpatterns = [
     path('team', views.settings_team, name='settings_team'),
     path('company', views.settings_company, name='settings_company'),
     path('authentication', views.settings_authentication, name='settings_authentication'),
+
+
+    # POST REQUESTS
+    path('timetracking/post',views.timetracking_post, name='timetracking_changed_settings'),
 ]
