@@ -5,8 +5,8 @@
 
         <li>
             <a
-                {% if content == 'home' %}class="active"{% endif %}
-                href="{% url 'settings' %}"><i class="fas fa-home"></i> Home
+                    {% if content == 'home' %}class="active"{% endif %}
+                    href="{% url 'settings' %}"><i class="fas fa-home"></i> Home
             </a>
         </li>
 
@@ -14,43 +14,51 @@
 
         <li>
             <a
-                {% if content == 'profile' %}class="active"{% endif %}
-                href="{% url 'settings_profile' %}"><i class="fas fa-address-card pr-2"></i> Profile
+                    {% if content == 'profile' %}class="active"{% endif %}
+                    href="{% url 'settings_profile' %}"><i class="fas fa-address-card pr-2"></i> Profile
             </a>
         </li>
 
         <li>
             <a
-                {% if content == 'timetracking' %}class="active"{% endif %}
-                href="{% url 'settings_timetracking' %}"><i class="fas fa-clock"></i> Time Tracking
+                    {% if content == 'timetracking' %}class="active"{% endif %}
+                    href="{% url 'settings_timetracking' %}"><i class="fas fa-clock"></i> Time Tracking
             </a>
         </li>
 
         <li>
             <a
-                {% if content == 'analytics' %}class="active"{% endif %}
-                href="{% url 'settings_analytics' %}"><i class="fas fa-chart-bar"></i> Analytics
+                    {% if content == 'activities' %}class="active"{% endif %}
+                    href="{% url 'settings_activities' %}"><i class="fas fa-stream"></i> Activities
             </a>
         </li>
 
         <li>
             <a
-              {% if content == 'projectmanagement' %}class="active"{% endif %}
-              href="{% url 'settings_projectmanagement' %}"><i class="fas fa-project-diagram"></i> Project Management
+                    {% if content == 'analytics' %}class="active"{% endif %}
+                    href="{% url 'settings_analytics' %}"><i class="fas fa-chart-bar"></i> Analytics
             </a>
         </li>
 
         <li>
             <a
-                {% if content == 'team' %}class="active"{% endif %}
-                href="{% url 'settings_team' %}"><i class="fas fa-users"></i> Team
+                    {% if content == 'projectmanagement' %}class="active"{% endif %}
+                    href="{% url 'settings_projectmanagement' %}"><i class="fas fa-project-diagram"></i> Project
+                Management
             </a>
         </li>
 
         <li>
             <a
-                {% if content == 'company' %}class="active"{% endif %}
-                href="{% url 'settings_company' %}"><i class="fas fa-building"></i> Company
+                    {% if content == 'team' %}class="active"{% endif %}
+                    href="{% url 'settings_team' %}"><i class="fas fa-users"></i> Team
+            </a>
+        </li>
+
+        <li>
+            <a
+                    {% if content == 'company' %}class="active"{% endif %}
+                    href="{% url 'settings_company' %}"><i class="fas fa-building"></i> Company
             </a>
         </li>
 
@@ -58,8 +66,8 @@
 
         <li>
             <a
-                {% if content == 'authentication' %}class="active"{% endif %}
-                href="{% url 'settings_authentication' %}"><i class="fas fa-shield-alt"></i> Authentication
+                    {% if content == 'authentication' %}class="active"{% endif %}
+                    href="{% url 'settings_authentication' %}"><i class="fas fa-shield-alt"></i> Authentication
             </a>
         </li>
     </ul>

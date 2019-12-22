@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block static %}
+    <link rel="stylesheet" href="{% static 'auth/profile/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    {% include 'auth/partials/_navbar.html' %}
+
+    <div class="container pt-3">
+
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="text-center">
+                    <img src="{{ profile_img }}" class="avatar img-circle img-thumbnail" alt="avatar">
+                </div>
+                </hr>
+
+
+                <ul class="list-group pt-2">
+                    <li class="list-group-item text-muted text-center">
+                        <strong>Activity</strong>
+                    </li>
+                    <li class="list-group-item text-left">
+                        <span class="pull-left"><strong>Total Workhour</strong></span>
+                    </li>
+                    <li class="list-group-item text-left">
+                        <span class="text-left"><strong>Used Activities</strong></span>
+                    </li>
+                    <li class="list-group-item text-left">
+                        <span class="text-left"><strong>Member since </strong></span>
+                    </li>
+                </ul>
+
+                <ul class="list-group pt-2">
+                    <li class="list-group-item text-muted text-center">
+                        <strong>Social Media</strong>
+                    </li>
+                    <li class="list-group-item text-center">
+                        <a href=""><i class="fab fa-facebook"></i></a>
+                        <a href=""><i class="fab fa-instagram pl-2"></i></a>
+                        <a href=""><i class="fab fa-linkedin-in pl-2"></i></a>
+                        <a href=""><i class="fab fa-github pl-2"></i></a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="col-sm-9">
+
+
+                <h4 class="profile-heading">Personal Information</h4>
+                <div class="col-xs-6">
+                    <label for="first_name" class="profile-label">First name:</label>
+                    <span class="profile-value">{{ user.first_name }}</span>
+
+
+                </div>
+
+
+                <div class="col-xs-6">
+                    <label for="last_name" class="profile-label">Last name:</label>
+                    <span class="profile-value">{{ user.last_name }}</span>
+                </div>
+
+                <div class="col-xs-6">
+                    <label for="last_name" class="profile-label">Gender:</label>
+                    {% if profile.gender is not None %}
+                        <span class="profile-value">{{ profile.gender }}</span>
+                    {% else %}
+                        <span class="profile-value">Not Selected in the <a
+                                href="{% url 'settings_profile' %}">Settings</a></span>
+                    {% endif %}
+                </div>
+
+                <div class="col-xs-6">
+                    <label for="last_name" class="profile-label">Birthdate:</label>
+                    {% if profile.gender is not None %}
+                        <span class="profile-value">{{ profile.birthdate }}</span>
+                    {% else %}
+                        <span class="profile-value">Not Selected in the </span>
+                        <a href="{% url 'settings_profile' %}">Settings</a>
+                    {% endif %}
+                </div>
+
+                <div class="col-xs-6">
+                    <label for="last_name" class="profile-label">Location:</label>
+                    {% if profile.gender is not None %}
+                        <span class="profile-value">{{ profile.location }}</span>
+                    {% else %}
+                        <span class="profile-value">Not Selected in the <a
+                                href="{% url 'settings_profile' %}">Settings</a></span>
+                    {% endif %}
+                </div>
+                <hr>
+                <h4 class="profile-heading">Authentification</h4>
+                <div class="col-xs-6">
+                    <label for="last_name" class="profile-label">E-Mail:</label>
+                    <span class="profile-value">{{ user.email }}</span>
+                </div>
+
+                <div class="col-xs-6">
+                    <label for="last_name" class="profile-label">Multifactor Authentication:</label>
+                    {% if profile.gender is not None %}
+                        {% for multifactor_auth in profile.multifactor_auths %}
+                            <span class="profile-value">{{ multifactor_auth }}</span>
+                        {% endfor %}
+
+
+                    {% else %}
+                        <span class="profile-value">Not Selected in the <a
+                                href="{% url 'settings_profile' %}">Settings</a></span>
+                    {% endif %}
+                </div>
+
+                <hr>
+
+
+            </div><!--/col-9-->
+        </div><!--/row-->
+    </div>
+{% endblock %}

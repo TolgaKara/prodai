@@ -18,3 +18,8 @@ class Account(models.Model):
             activation_key += random.choice(alphabet_and_letters)
 
         return activation_key
+
+class AuthProfile(models.Model):
+    pass
+    # img
+    # social media json

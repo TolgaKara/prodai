@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.settings, name='settings'),
     path('profile', views.settings_profile, name='settings_profile'),
     path('timetracking', views.settings_timetracking, name='settings_timetracking'),
+    path('activities', views.settings_activities, name='settings_activities'),
     path('analytics', views.settings_analytics, name='settings_analytics'),
     path('projectmanagement', views.settings_projectmanagement, name='settings_projectmanagement'),
     path('team', views.settings_team, name='settings_team'),

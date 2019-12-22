@@ -163,6 +163,6 @@ def logout(request):
 def profile_view(request):
     if request.user.is_authenticated:
         # This is the access point
-        return None
+        return render(request, 'auth/profile/index.html')
     else:
         return redirect('homepage')

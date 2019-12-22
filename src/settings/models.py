@@ -12,3 +12,7 @@ class TimeTrackingSetting(models.Model):
     short_break = models.IntegerField()
     long_break = models.IntegerField()
     cycle = models.IntegerField()
+
+class ActivitiesSetting(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    block_activitie = models.TextField(max_length=400)

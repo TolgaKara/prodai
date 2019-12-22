@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from src.settings.models import TimeTrackingSetting
+from src.settings.models import ActivitiesSetting
 
 
 # Create your views here.
@@ -23,12 +24,42 @@ def settings_profile(request):
 
 
 def settings_timetracking(request):
-    timetracking_settings = TimeTrackingSetting.objects.get(user_id=request.user.id)
+    try:
+        timetracking_settings = TimeTrackingSetting.objects.get(user_id=request.user.id)
+    except ActivitiesSetting.DoesNotExist:
+        timetracking_settings = None
+
     if request.user.is_authenticated:
-        return render(request, 'auth/settings/index.html', context={
-            'content': 'timetracking',
-            'timetracking_option': timetracking_settings.timetracking_name
-        })
+        if timetracking_settings is not None:
+            return render(request, 'auth/settings/index.html', context={
+                'content': 'timetracking',
+                'timetracking_option': timetracking_settings.timetracking_name
+            })
+        else:
+            return render(request, 'auth/settings/index.html', context={
+                'content': 'timetracking',
+                'timetracking_option': None
+            })
+    else:
+        return redirect('homepage')
+
+def settings_activities(request):
+    try:
+        activities_settings = ActivitiesSetting.objects.get(user_id=request.user.id)
+    except ActivitiesSetting.DoesNotExist:
+        activities_settings = None
+
+    if request.user.is_authenticated:
+        if activities_settings is not None:
+            return render(request, 'auth/settings/index.html', context={
+                'content': 'activities',
+                'blocked_activities': activities_settings.activities_blocked_list
+            })
+        else:
+            return render(request, 'auth/settings/index.html', context={
+                'content': 'activities',
+                'blocked_activities': None
+            })
     else:
         return redirect('homepage')
 
