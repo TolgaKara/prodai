@@ -1,6 +1,7 @@
 import random
 
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -19,7 +20,14 @@ class Account(models.Model):
 
         return activation_key
 
-class AuthProfile(models.Model):
-    pass
-    # img
-    # social media json
+class ProfileApp(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    img = models.ImageField(upload_to='profile_img', blank=True)
+    facebook = models.TextField(default=None, null=True)
+    instagram = models.TextField(default=None, null=True)
+    linkedin = models.TextField(default=None, null=True)
+    github = models.TextField(default=None, null=True)
+    gender = models.TextField(default=None, null=True)
+    birthdate = models.TextField(default=None, null=True)
+    location = models.TextField(default=None, null=True)
+    multifactor_auths = models.TextField(default=None, null=True)

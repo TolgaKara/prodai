@@ -13,7 +13,12 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="text-center">
-                    <img src="{{ profile_img }}" class="avatar img-circle img-thumbnail" alt="avatar">
+                    {% if profile.img %}
+                        <img src="{{ profile.img }}" class="avatar img-circle img-thumbnail" alt="avatar"><img src="{{ profile.img }}" class="avatar img-circle img-thumbnail" alt="User Picture">
+                    {% else %}
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Default User Picture" id="default-user-picture">
+                    {% endif %}
+
                 </div>
                 </hr>
 
@@ -38,10 +43,22 @@
                         <strong>Social Media</strong>
                     </li>
                     <li class="list-group-item text-center">
-                        <a href=""><i class="fab fa-facebook"></i></a>
-                        <a href=""><i class="fab fa-instagram pl-2"></i></a>
-                        <a href=""><i class="fab fa-linkedin-in pl-2"></i></a>
-                        <a href=""><i class="fab fa-github pl-2"></i></a>
+                        {% if profile.facebook %}
+                            <a href="{{ profile.facebook }}"><i class="fab fa-facebook"></i></a>
+                        {% endif %}
+
+                        {% if profile.instagram %}
+                            <a href="{{ profile.instagram }}"><i class="fab fa-instagram pl-2"></i></a>
+                        {% endif %}
+
+                        {% if profile.linkedin %}
+                            <a href="{{ profile.linkedin }}"><i class="fab fa-linkedin-in pl-2"></i></a>
+                        {% endif %}
+
+                        {% if profile.github %}
+                            <a href="{{ profile.github }}"><i class="fab fa-github pl-2"></i></a>
+                        {% endif %}
+
                     </li>
                 </ul>
             </div>

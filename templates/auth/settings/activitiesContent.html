@@ -1,6 +1,6 @@
 {% load static %}
 <div class="col-lg-12 pt-3 text-center">
-    <h1 class="display-4">Settings for you time tracking</h1>
+    <h1 class="display-4">Settings for you activities</h1>
     <p class="display-5 description">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi assumenda corporis cumque doloribus <br>
         ea illum necessitatibus quidem rerum, voluptatum. Amet animi ducimus, <br>
@@ -10,100 +10,31 @@
 
 <div class="container">
 
-    <form class="form-horizontal" action="{% url 'timetracking_changed_settings' %}" method="POST">
+    <form class="form-horizontal" action="{% url 'block_activity' %}" method="POST">
         {% csrf_token %}
-        <div class="control-group">
-            <label for="timecycle" class="control-label" id="label-text">Time Cycle</label>
-            <div class="controls">
-                <select name="timetracking_option" class="custom-select" id="timetracking-option">
-
-                    <option value="default, Track all the time, 0, 0, 0, 0" name="default"
-                        {% if timetracking_option == 'default' %}
-                            selected
-                        {% endif %}
-                    > default - Track all the time </option>
-
-                    <option value="pomodoro_general, Pomodoro General, 25, 5, 15, 4" name="pomodoro_general"
-                        {% if timetracking_option == 'pomodoro_general' %}
-                            selected
-                        {% endif %}
-                    > pomodoro general - 25 | 5 | 15 | 4 </option>
-
-                    <option value="pomodoro_work, Pomodoro Work, 50, 10, 20, 2" name="pomodoro_work"
-                        {% if timetracking_option == 'pomodoro_work' %}
-                            selected
-                        {% endif %}
-                    > pomodoro work - 50 | 10 | 20 | 2 </option>
-
-                    <option value="pomodoro_personal, Pomodoro Personal, 30, 2, 25, 4" name="pomodoro_personal"
-                        {% if timetracking_option == 'pomodoro_personal' %}
-                            selected
-                        {% endif %}
-                    > pomodoro personal - 30 | 2 | 25 | 4 </option>
-
-                    <option value="custom" name="custom"
-                        {% if timetracking_option == 'custom' %}
-                            selected
-                        {% endif %}
-                    > custom </option>
-
-
-                </select>
-
-                <div class="pt-3 d-none" id="customTimeUserInput">
-                    <div class="input-group pt-4">
-                        <label class="my-auto" for="workingtime" id="label-text">Working Time</label>
-                        <input type="number" class="form-control ml-5" placeholder="Enter your working time in minutes"
-                               id="workingtime">
-                        <div class="input-group-append">
-                            <span class="input-group-text">minutes</span>
-                        </div>
-                    </div>
-
-
-                    <div class="input-group pt-2">
-                        <label class="my-auto" for="shortbreaktime" id="label-text">Short break Time</label>
-                        <input type="number" class="form-control ml-5"
-                               placeholder="Enter your short break time in minutes"
-                               id="shortbreaktime">
-                        <div class="input-group-append">
-                            <span class="input-group-text">minutes</span>
-                        </div>
-                    </div>
-
-
-                    <div class="input-group pt-2">
-                        <label class="my-auto" for="longbreaktime" id="label-text">Long break Time</label>
-                        <input type="number" class="form-control ml-5"
-                               placeholder="Enter your long break time in minutes"
-                               id="longbreaktime">
-                        <div class="input-group-append">
-                            <span class="input-group-text">minutes</span>
-                        </div>
-                    </div>
-
-
-                    <div class="input-group pt-2">
-                        <label class="my-auto" for="cycles" id="label-text">Cycle</label>
-                        <input type="number" class="form-control ml-5" placeholder="Enter your number of cycles"
-                               id="cycles">
-                        <div class="input-group-append">
-                            <span class="input-group-text">cycle</span>
-                        </div>
-                    </div>
-
-
-                </div>
-
+        <div class="row justify-content-md-center pt-3">
+            <div class="col-xs-12 col-md-4">
+                <label for="blocked_activity">Block Activity: </label>
             </div>
-
-
-            <div class="row">
-                <div class="col text-center">
-                    <button type="submit" class="btn btn-primary mx-auto mt-5"><i class="fas fa-paper-plane"></i> Save
-                    </button>
+            <div class="col-xs-12 col-md-8">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="activity_name">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-success" type="submit"><i class="fas fa-plus"></i> Add</button>
+                    </div>
                 </div>
             </div>
+
         </div>
+    </form>
+    <form class="form-horizontal" action="{% url 'delete_activity' %}" method="POST">
+    {% csrf_token %}
+        <ul class="list-group pt-3">
+                <li class="list-group-item list-group-item-light text-center"><strong>Blocked Activities</strong></li>
+            {% for activity in activities %}
+                <li class="list-group-item list-group-item-danger">{{ activity.block_activitie }} <button class="btn btn-danger float-right" type="submit"><i class="fas fa-trash-alt text-light"></i></button></li>
+                <input type="hidden" name="activity_id" value="{{ activity.id }}">
+            {% endfor %}
+        </ul>
     </form>
 </div>

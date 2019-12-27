@@ -16,4 +16,7 @@ urlpatterns = [
 
     # POST REQUESTS
     path('timetracking/post',views.timetracking_post, name='timetracking_changed_settings'),
+    path('profile/post',views.profile_post, name='profile_changed_settings'),
+    path('activity/post',views.block_activity_post, name='block_activity'),
+    path('activity/delete',views.delete_activity_post, name='delete_activity'),
 ]

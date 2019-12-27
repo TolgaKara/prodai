@@ -1,6 +1,7 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from src.settings.models import TimeTrackingSetting
-from src.settings.models import ActivitiesSetting
+from .models import TimeTrackingSetting, ActivitiesSetting
+from src.accounts.models import ProfileApp
 
 
 # Create your views here.
@@ -15,9 +16,11 @@ def settings(request):
 
 
 def settings_profile(request):
+    profile = ProfileApp.objects.get(user=request.user)
     if request.user.is_authenticated:
         return render(request, 'auth/settings/index.html', context={
-            'content' : 'profile'
+            'content' : 'profile',
+            'profile' : profile
         })
     else:
         return redirect('homepage')
@@ -45,15 +48,16 @@ def settings_timetracking(request):
 
 def settings_activities(request):
     try:
-        activities_settings = ActivitiesSetting.objects.get(user_id=request.user.id)
+        activities = ActivitiesSetting.objects.filter(user=request.user)
+
     except ActivitiesSetting.DoesNotExist:
-        activities_settings = None
+        activities = None
 
     if request.user.is_authenticated:
-        if activities_settings is not None:
+        if activities is not None:
             return render(request, 'auth/settings/index.html', context={
                 'content': 'activities',
-                'blocked_activities': activities_settings.activities_blocked_list
+                'activities': activities
             })
         else:
             return render(request, 'auth/settings/index.html', context={
@@ -131,3 +135,44 @@ def timetracking_post(request):
 
 
     return redirect('settings_timetracking')
+
+
+def block_activity_post(request):
+    activity = request.POST.get('activity_name')
+    activity_obj, created = ActivitiesSetting.objects.get_or_create(user = request.user, block_activitie = activity)
+
+    return redirect('settings_activities')
+
+
+def delete_activity_post(request):
+    activity_id = request.POST.get('activity_id')
+    ActivitiesSetting.objects.filter(id=activity_id).delete()
+    return redirect('settings_activities')
+
+
+def profile_post(request):
+    profile_img = request.POST.get('profile_img')
+    first_name = request.POST.get('first_name')
+    last_name = request.POST.get('last_name')
+    gender = request.POST.get('gender')
+    birthdate = request.POST.get('birthdate')
+    location = request.POST.get('location')
+    email = request.POST.get('email')
+    multi_auth = request.POST.get('muli_auth')
+
+    user = request.user
+    user.first_name = first_name
+    user.last_name = last_name
+    user.email = email
+    user.save()
+
+    profile_settings = ProfileApp.objects.get(user_id=request.user.id)
+    profile_settings.img = profile_img
+    profile_settings.gender = gender
+    profile_settings.birthdate = birthdate
+    profile_settings.location = location
+    profile_settings.multifactor_auths = multi_auth
+    profile_settings.save()
+    return redirect('settings_profile')
+
+

@@ -29,8 +29,13 @@ def complete_registration(request):
                                             last_name=last_name)
             user.save()
 
-            user_setting = TimeTrackingSetting.objects.create(user=user, timetracking_name='default', workingtime=0, short_break=0, long_break=0, cycle=0)
+            user_setting = TimeTrackingSetting.objects.create(user=user, timetracking_name='default', workingtime=0,
+                                                              short_break=0, long_break=0, cycle=0)
             user_setting.save()
+            profile = models.ProfileApp.objects.create(user=user, img='', facebook='', instagram='', linkedin='',
+                                                       github='', gender='', birthdate='', location='',
+                                                       multifactor_auths='')
+            profile.save()
 
             return redirect('dashboard')
         else:
@@ -115,7 +120,8 @@ def signup(request):
                     messages.error(request, 'Password do not match')
                     return redirect('signup')
             else:
-                messages.error(request, 'You need to confirm the term of use and the privacy policy to register on Prodai')
+                messages.error(request,
+                               'You need to confirm the term of use and the privacy policy to register on Prodai')
                 return redirect('signup')
         else:
             return render(request, template_name='components/signup.html')
@@ -147,7 +153,6 @@ def signin(request):
 
 
 def logout(request):
-
     if request.method == 'POST':
         # Logout User Logic
         # Redirect homepage
@@ -156,13 +161,17 @@ def logout(request):
         messages.success(request, 'You are now logout.')
         return redirect('homepage')
     else:
-        messages.error(request,'You can not logout by Typing in the Path. Please use the dropdown Logout button.')
+        messages.error(request, 'You can not logout by Typing in the Path. Please use the dropdown Logout button.')
         return redirect('dashboard')
 
 
 def profile_view(request):
     if request.user.is_authenticated:
-        # This is the access point
-        return render(request, 'auth/profile/index.html')
+        profile_obj = models.ProfileApp.objects.filter(user=request.user)[0]
+        print(profile_obj.location)
+        return render(request, 'auth/profile/index.html', context={
+            'profile': profile_obj
+
+        })
     else:
         return redirect('homepage')
