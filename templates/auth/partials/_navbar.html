@@ -11,30 +11,30 @@
 
         <li class="nav-item mt-2">
             <a
-                     {% if 'dashboard' in request.path %}
+                    {% if 'dashboard' in request.path %}
                         class="nav-link active"
                     {% else %}
                         class="nav-link"
                     {% endif %}
-                    id="nav-link" href="{% url 'dashboard' %}"><i class="fas fa-home pr-2"></i>Dashboard</a>
+                        id="nav-link" href="{% url 'dashboard' %}"><i class="fas fa-home pr-2"></i>Dashboard</a>
         </li>
         <li class="nav-item mt-2">
             <a
-                     {% if 'timetracking' in request.path %}
+                    {% if 'timetracking' in request.path %}
                         class="nav-link active"
                     {% else %}
                         class="nav-link"
                     {% endif %}
-                    href="{% url 'timetracking' %}"><i class="fas fa-clock pr-2"></i>Time Tracking</a>
+                        href="{% url 'timetracking' %}"><i class="fas fa-clock pr-2"></i>Time Tracking</a>
         </li>
         <li class="nav-item mt-2">
             <a
-                     {% if 'analytics' in request.path %}
+                    {% if 'analytics' in request.path %}
                         class="nav-link active"
                     {% else %}
                         class="nav-link"
                     {% endif %}
-                    href="{% url 'analytics' %}"><i class="fas fa-analytics pr-2"></i>Analytics</a>
+                        href="{% url 'analytics' %}"><i class="fas fa-analytics pr-2"></i>Analytics</a>
         </li>
         <li class="nav-item mt-2">
             <a
@@ -48,34 +48,44 @@
         </li>
         <li class="nav-item mt-2">
             <a
-                     {% if 'team' in request.path %}
+                    {% if 'team' in request.path %}
                         class="nav-link active"
                     {% else %}
                         class="nav-link"
                     {% endif %}
-                    href="{% url 'team' %}"><i class="fas fa-users pr-2"></i>Team</a>
+                        href="{% url 'team' %}"><i class="fas fa-users pr-2"></i>Team</a>
         </li>
 
         <div class="vertical-line"></div>
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+
+            <a class="nav-link" id="profile-dropdown-link" data-toggle="dropdown" href="#" role="button"
+               aria-haspopup="true"
                aria-expanded="false">
-                <img src="{% static 'general/img/testimonials/foto-sushi.png' %}" alt="">
-                {{ user.username }} <i class="fas fa-arrow-down my-auto"></i>
+                <div class="mx-auto">
+                    {% if profile.img %}
+                    {% else %}
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                             alt="" id="navbar-profile-img">
+                    {% endif %}
+
+                    {{ user.username }} <i class="fas fa-arrow-down my-auto"></i>
+                </div>
             </a>
 
 
-            <div class="dropdown-menu dropdown-menu-right mt-1" id="dropdown">
-                <a class="dropdown-item dropdown-link" href="{% url 'profile' %}"><i class="fas fa-user-circle pr-1"></i>Profile</a>
+            <div class="dropdown-menu dropdown-menu-right mt-1 mr-5" id="dropdown">
+                <a class="dropdown-item dropdown-link" href="{% url 'profile' %}"><i
+                        class="fas fa-user-circle pr-1"></i>Profile</a>
                 <a class="dropdown-item dropdown-link" href="{% url 'settings' %}"><i class="fas fa-cog pr-1"></i>Settings</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-danger" href="javascript:{document.getElementById('logout').submit()}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                <a class="dropdown-item text-danger" href="javascript:{document.getElementById('logout').submit()}"><i
+                        class="fas fa-sign-out-alt"></i> Logout</a>
                 <form action="{% url 'logout' %}" method="POST" id="logout">
                     {% csrf_token %}
                     <input type="hidden">
                 </form>
             </div>
-        </li>
+
     </ul>
 
 </nav>

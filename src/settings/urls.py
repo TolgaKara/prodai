@@ -1,6 +1,10 @@
 from django.urls import path, include
 
 from src.settings import views
+from django.urls import path, include
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('', views.settings, name='settings'),
@@ -13,10 +17,13 @@ urlpatterns = [
     path('company', views.settings_company, name='settings_company'),
     path('authentication', views.settings_authentication, name='settings_authentication'),
 
-
     # POST REQUESTS
-    path('timetracking/post',views.timetracking_post, name='timetracking_changed_settings'),
-    path('profile/post',views.profile_post, name='profile_changed_settings'),
-    path('activity/post',views.block_activity_post, name='block_activity'),
-    path('activity/delete',views.delete_activity_post, name='delete_activity'),
+    path('timetracking/post', views.timetracking_post, name='timetracking_changed_settings'),
+    path('profile/post', views.profile_post, name='profile_changed_settings'),
+    path('activity/post', views.block_activity_post, name='block_activity'),
+    path('activity/delete', views.delete_activity_post, name='delete_activity'),
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

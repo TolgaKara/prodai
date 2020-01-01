@@ -22,7 +22,7 @@ class Account(models.Model):
 
 class ProfileApp(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    img = models.ImageField(upload_to='profile_img', blank=True)
+    img = models.ImageField(upload_to='images', blank=True)
     facebook = models.TextField(default=None, null=True)
     instagram = models.TextField(default=None, null=True)
     linkedin = models.TextField(default=None, null=True)

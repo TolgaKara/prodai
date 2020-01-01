@@ -15,4 +15,4 @@ class TimeTrackingSetting(models.Model):
 
 class ActivitiesSetting(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    block_activitie = models.TextField(max_length=400)
+    block_activities = models.TextField(max_length=400)

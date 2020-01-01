@@ -135,8 +135,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'asset')
 
 
 # MEDIA URL AND ROOT
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Email
 #   Hushmail
