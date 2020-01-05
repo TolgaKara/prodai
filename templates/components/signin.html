@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static from staticfiles %}
+{% load static %}
 {% block static %}<link rel="stylesheet" href="{% static 'css/signin.css' %}">{% endblock %}
 {% block content %}
     <div class="signin-img">
@@ -25,7 +25,7 @@
                             <label for="signin-password-input">Password</label>
                             <input type="password" class="form-control" name="password" placeholder="Enter Password">
                         </div>
-                        <a href="{% url 'signup' %}" class="stretched-link">Create new account</a>
+                        <a href="{% url 'signup' %}">Create new account</a>
 
                         <button type="submit" class="btn btn-block btn-primary mt-3">Sign in</button>
 

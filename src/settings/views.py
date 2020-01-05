@@ -139,7 +139,7 @@ def timetracking_post(request):
 
 def block_activity_post(request):
     activity = request.POST.get('activity_name')
-    activity_obj, created = ActivitiesSetting.objects.get_or_create(user = request.user, block_activitie = activity)
+    activity_obj, created = ActivitiesSetting.objects.get_or_create(user = request.user, block_activities = activity)
 
     return redirect('settings_activities')
 

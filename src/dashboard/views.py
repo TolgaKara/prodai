@@ -3,7 +3,6 @@ from datetime import datetime
 import requests
 import json
 from django.conf import settings
-from django.contrib.gis.geoip2 import GeoIP2
 from src.settings.models import TimeTrackingSetting
 
 

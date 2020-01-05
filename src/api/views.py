@@ -2,22 +2,40 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from django.http import HttpResponse, JsonResponse
 from src.settings.models import ActivitiesSetting
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 
 # Create your views here.
 def api(request):
     return None
 
+@csrf_exempt
 def timetracking_activities(request):
-    print('POST Activities got triggered')
+    if request.method != 'POST':
+        return
+    username = ""
+    password = ""
+    json_body = json.loads(request.body)
+    for data in json_body:
+        if data == 'authentifications':
+            auth_data = json_body[data]
+            username = auth_data["username"]
+            password = auth_data["password"]
+            print(username)
+
+    print(type(json_body))
+    return JsonResponse({
+                'status_code': 200,
+
+            })
 
 
 def get_blocked_activities(user_obj):
     check_activities = ActivitiesSetting.objects.filter(user=user_obj).exists()
 
     if check_activities:
-        block_activities_obj = ActivitiesSetting.objects.get(user=user_obj)
-        return block_activities_obj
+        return ActivitiesSetting.objects.get(user=user_obj)
     else:
         return None
 
