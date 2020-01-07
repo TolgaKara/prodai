@@ -55,14 +55,14 @@ def timetracking_activities(request):
 
     })
 
-
-def get_blocked_activities(user_obj):
-    check_activities = ActivitiesSetting.objects.filter(user=user_obj).exists()
-
-    if check_activities:
-        return ActivitiesSetting.objects.get(user=user_obj)
-    else:
-        return None
+#
+# def get_blocked_activities(user_obj):
+#     check_activities = ActivitiesSetting.objects.filter(user=user_obj).exists()
+#
+#     if check_activities:
+#         return ActivitiesSetting.objects.get(user=user_obj)
+#     else:
+#         return None
 
 
 def check_auth(request):
@@ -78,13 +78,10 @@ def check_auth(request):
     else:
         user_obj = User.objects.get(username=username)
 
-        block_activities_obj = get_blocked_activities(user_obj)
+        #block_activities_obj = get_blocked_activities(user_obj)
 
         response = JsonResponse({
             'status_code': 200,
             'message': "Success the credentials are correct. We now start your Script.",
-            'activities': {
-                'block_activities': block_activities_obj
-            },
         })
     return response

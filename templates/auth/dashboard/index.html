@@ -51,30 +51,34 @@
             </div>
             <div class="box col-md-7 col-sm-12 ml-md-auto">
                 <h2>Time consumed by Activity</h2>
-                <table class="table table-striped table-bordered">
+                <table class="table table-bordered">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Activity Name</th>
                         <th scope="col">Time Spent</th>
-                        <th scope="col">Feeling</th>
-
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        {% for foo in tracked_activities %}
-
-                            <th scope="row">Index</th>
-                            <td>activity_name</td>
-                            <td>spent_time</td>
-                            <td>feeling</td>
 
 
-                        {% endfor %}
+                    {% for activity in tracked_activities %}
+                        <tr
+                                {% for block_activity in blocked_activities %}
+                                    {% if activity.activity_name == block_activity.block_activities %}
+                                        class="bg-danger text-light"
+                                    {% endif %}
+                                {% endfor %}
+
+                        >
+                            <th scope="row">{{ activity.index }}</th>
+                            <td>{{ activity.activity_name }}</td>
+                            <td>{{ activity.time_spent }}</td>
+                        </tr>
 
 
-                    </tr>
+                    {% endfor %}
+
 
                     </tbody>
                 </table>
