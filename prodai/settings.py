@@ -43,8 +43,8 @@ INSTALLED_APPS = [
     'src.homepage.apps.HomepageConfig',
     'src.accounts.apps.AccountsConfig',
     'src.settings.apps.SettingsConfig',
-    'src.activity.apps.ActivityConfig,',
-    'src.core.apps.CoreConfig'
+    'src.activity.apps.ActivityConfig',
+    'src.core.apps.CoreConfig',
 ]
 
 MIDDLEWARE = [

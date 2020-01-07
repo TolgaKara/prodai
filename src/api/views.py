@@ -17,15 +17,21 @@ def timetracking_activities(request):
     if request.method != 'POST':
         return
     user = ""
-    posted_json_content = json.loads(request.body)
+    try:
+        posted_json_content = json.loads(request.body)
+    except json.decoder.JSONDecodeError:
+        return JsonResponse({
+            'status_code': 404,
+            'messages': 'File is empty and so not ready to assign to the Database'
+        })
+
+
     for data in posted_json_content:
         if data == 'authentifications':
             auth_data = posted_json_content[data]
             global username
             username = auth_data["username"]
             password = auth_data["password"]
-
-            print(type(username))
             break
         if data == 'activities':
             for activities_data in posted_json_content[data]:
@@ -37,22 +43,13 @@ def timetracking_activities(request):
                 minutes = time_entries['minutes']
                 seconds = time_entries['seconds']
                 start_time = time_entries['start_time']
+
                 tracked_activity_obj = TrackedActivities.objects.create(username=username, activity_name=activity_name,
                                                                         days=days, end_time=end_time,
                                                                         hours=hours, minutes=minutes, seconds=seconds,
                                                                         start_time=start_time)
                 tracked_activity_obj.save()
 
-            # time_entries = activities_data['time_entries']
-            # days = time_entries[0]
-            # end_time = time_entries[1]
-            # hours = time_entries[2]
-            # minutes = time_entries[3]
-            # seconds = time_entries[4]
-            # start_time = time_entries[5]
-            # print(days)
-
-    print(type(posted_json_content))
     return JsonResponse({
         'status_code': 200,
 
