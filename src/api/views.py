@@ -2,6 +2,7 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from django.http import HttpResponse, JsonResponse
 from src.settings.models import ActivitiesSetting
+from src.activity.models import TrackedActivities
 from django.views.decorators.csrf import csrf_exempt
 import json
 
@@ -10,25 +11,52 @@ import json
 def api(request):
     return None
 
+
 @csrf_exempt
 def timetracking_activities(request):
     if request.method != 'POST':
         return
-    username = ""
-    password = ""
-    json_body = json.loads(request.body)
-    for data in json_body:
+    user = ""
+    posted_json_content = json.loads(request.body)
+    for data in posted_json_content:
         if data == 'authentifications':
-            auth_data = json_body[data]
+            auth_data = posted_json_content[data]
+            global username
             username = auth_data["username"]
             password = auth_data["password"]
-            print(username)
 
-    print(type(json_body))
+            print(type(username))
+            break
+        if data == 'activities':
+            for activities_data in posted_json_content[data]:
+                activity_name = activities_data['name']
+                time_entries = activities_data['time_entries'][0]
+                days = time_entries['days']
+                end_time = time_entries['end_time']
+                hours = time_entries['hours']
+                minutes = time_entries['minutes']
+                seconds = time_entries['seconds']
+                start_time = time_entries['start_time']
+                tracked_activity_obj = TrackedActivities.objects.create(username=username, activity_name=activity_name,
+                                                                        days=days, end_time=end_time,
+                                                                        hours=hours, minutes=minutes, seconds=seconds,
+                                                                        start_time=start_time)
+                tracked_activity_obj.save()
+
+            # time_entries = activities_data['time_entries']
+            # days = time_entries[0]
+            # end_time = time_entries[1]
+            # hours = time_entries[2]
+            # minutes = time_entries[3]
+            # seconds = time_entries[4]
+            # start_time = time_entries[5]
+            # print(days)
+
+    print(type(posted_json_content))
     return JsonResponse({
-                'status_code': 200,
+        'status_code': 200,
 
-            })
+    })
 
 
 def get_blocked_activities(user_obj):
@@ -39,11 +67,10 @@ def get_blocked_activities(user_obj):
     else:
         return None
 
+
 def check_auth(request):
     username = request.GET.get('username')
     password = request.GET.get('password')
-
-
 
     user = auth.authenticate(username=username, password=password)
     if user is None:
@@ -56,7 +83,6 @@ def check_auth(request):
 
         block_activities_obj = get_blocked_activities(user_obj)
 
-
         response = JsonResponse({
             'status_code': 200,
             'message': "Success the credentials are correct. We now start your Script.",
@@ -65,8 +91,3 @@ def check_auth(request):
             },
         })
     return response
-
-
-
-
-
