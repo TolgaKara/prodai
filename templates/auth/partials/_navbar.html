@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{% static 'auth/style.css' %}">
 {% endblock %}
 <nav class="navbar navbar-light bg-white">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href={% url 'dashboard' %}>
         <img src="{% static 'general/img/logo.png' %}" alt="Prodai Company Logo">
     </a>
 
@@ -58,22 +58,17 @@
 
         <div class="vertical-line"></div>
 
-            <a class="nav-link" id="profile-dropdown-link" data-toggle="dropdown" href="#" role="button"
+            <a class="nav-link pt-3" id="profile-dropdown-link" data-toggle="dropdown" href="#" role="button"
                aria-haspopup="true"
                aria-expanded="false">
                 <div class="mx-auto">
-                    {% if profile.img %}
-                    {% else %}
-                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                             alt="" id="navbar-profile-img">
-                    {% endif %}
 
                     {{ user.username }} <i class="fas fa-arrow-down my-auto"></i>
                 </div>
             </a>
 
 
-            <div class="dropdown-menu dropdown-menu-right mt-1 mr-5" id="dropdown">
+            <div class="dropdown-menu dropdown-menu-right mt-1 mr-5 pr-2" id="dropdown">
                 <a class="dropdown-item dropdown-link" href="{% url 'profile' %}"><i
                         class="fas fa-user-circle pr-1"></i>Profile</a>
                 <a class="dropdown-item dropdown-link" href="{% url 'settings' %}"><i class="fas fa-cog pr-1"></i>Settings</a>

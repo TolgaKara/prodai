@@ -12,3 +12,9 @@ class TrackedActivities(TimeStampedModel):
     minutes = models.IntegerField()
     seconds = models.IntegerField()
     start_time = models.TextField(max_length=100)
+
+    def current_active_activities(self, current_date):
+        return any(activity.start_time[:10] == current_date for activity in self)
+
+    def get_daily_activities(self, request, current_date):
+        pass

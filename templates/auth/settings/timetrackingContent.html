@@ -10,42 +10,57 @@
 
 <div class="container">
 
+
     <form class="form-horizontal" action="{% url 'timetracking_changed_settings' %}" method="POST">
         {% csrf_token %}
-        <div class="control-group">
+        <div class="control-group pt-4">
+            <label for="max-time" class="control-label" id="label-text">Maximum Daily Work Time</label>
+            <div class="input-group">
+                <input type="number" class="form-control" id="max-time" max="24" min="0" name="max-work-time" value="0">
+                <div class="input-group-append">
+                    <span class="input-group-text">Hour</span>
+                </div>
+            </div>
+        </div>
+        <div class="control-group pt-4">
             <label for="timecycle" class="control-label" id="label-text">Time Cycle</label>
             <div class="controls">
                 <select name="timetracking_option" class="custom-select" id="timetracking-option">
 
                     <option value="default, Track all the time, 0, 0, 0, 0" name="default"
-                        {% if timetracking_option == 'default' %}
+                            {% if timetracking_option == 'default' %}
                             selected
-                        {% endif %}
-                    > default - Track all the time </option>
+                            {% endif %}
+                    > default - Track all the time
+                    </option>
 
                     <option value="pomodoro_general, Pomodoro General, 25, 5, 15, 4" name="pomodoro_general"
-                        {% if timetracking_option == 'pomodoro_general' %}
+                            {% if timetracking_option == 'pomodoro_general' %}
                             selected
-                        {% endif %}
-                    > pomodoro general - 25 | 5 | 15 | 4 </option>
+                            {% endif %}
+                    > pomodoro general - 25 | 5 | 15 | 4
+                    </option>
 
                     <option value="pomodoro_work, Pomodoro Work, 50, 10, 20, 2" name="pomodoro_work"
-                        {% if timetracking_option == 'pomodoro_work' %}
+                            {% if timetracking_option == 'pomodoro_work' %}
                             selected
-                        {% endif %}
-                    > pomodoro work - 50 | 10 | 20 | 2 </option>
+                            {% endif %}
+                    > pomodoro work - 50 | 10 | 20 | 2
+                    </option>
 
                     <option value="pomodoro_personal, Pomodoro Personal, 30, 2, 25, 4" name="pomodoro_personal"
-                        {% if timetracking_option == 'pomodoro_personal' %}
+                            {% if timetracking_option == 'pomodoro_personal' %}
                             selected
-                        {% endif %}
-                    > pomodoro personal - 30 | 2 | 25 | 4 </option>
+                            {% endif %}
+                    > pomodoro personal - 30 | 2 | 25 | 4
+                    </option>
 
                     <option value="custom" name="custom"
-                        {% if timetracking_option == 'custom' %}
+                            {% if timetracking_option == 'custom' %}
                             selected
-                        {% endif %}
-                    > custom </option>
+                            {% endif %}
+                    > custom
+                    </option>
 
 
                 </select>

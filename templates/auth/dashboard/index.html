@@ -5,6 +5,10 @@
 {% block static %}
     <link rel="stylesheet" href="{% static 'auth/dashboard/style.css' %}">
 {% endblock %}
+{% block staticjs %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="{% static 'auth/dashboard/index.js' %}"></script>
+{% endblock %}
 
 
 {% block content %}
@@ -15,12 +19,16 @@
         <div class="row box">
             {% comment %}GENERAL TIME BOX{% endcomment %}
             <div class="col-md-4 col-sm-12 text-center">
-                <p class="display-3">12:45 Uhr</p>
+                <p class="display-3">{{ timetracking_max_workhours.max_daily_work_time }}</p>
             </div>
 
             <div class="col-md-4 col-sm-12 text-center">
                 <p class="display-5"><strong>{{ weekday }}</strong></p>
                 <p class="display-5"><i class="fas fa-calendar-alt"></i> {{ date }}</p>
+                <hr>
+                <p class="display-5 text-primary"><i class="fas fa-rocket"></i> {{ productivity_percentage }}</p>
+                <p class="display-5 text-danger"><i class="fas fa-crosshairs"></i> {{ procrastination_percentage }}</p>
+
             </div>
 
             <div class="col-md-4 col-sm-12 text-center">
@@ -44,44 +52,46 @@
                 <p class="display-4 text-dark">{{ daily_worktime }}</p>
                 <hr>
                 <h2 class="text-primary">Productivity Time</h2>
-                <p class="display-4 text-primary">{{ daily_worktime }}</p>
+                <p class="display-4 text-primary">{{ productivity_worktime }}</p>
                 <hr>
                 <h2 class="text-danger">Procrastination Time</h2>
-                <p class="display-4 text-danger">{{ daily_worktime }}</p>
+                <p class="display-4 text-danger">{{ procrastination_time }}</p>
             </div>
-            <div class="box col-md-7 col-sm-12 ml-md-auto">
+            <div class="box col-md-7 col-sm-12 ml-md-auto" id="table-div">
                 <h2>Time consumed by Activity</h2>
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Activity Name</th>
-                        <th scope="col">Time Spent</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-
-                    {% for activity in tracked_activities %}
-                        <tr
-                                {% for block_activity in blocked_activities %}
-                                    {% if activity.activity_name == block_activity.block_activities %}
-                                        class="bg-danger text-light"
-                                    {% endif %}
-                                {% endfor %}
-
-                        >
-                            <th scope="row">{{ activity.index }}</th>
-                            <td>{{ activity.activity_name }}</td>
-                            <td>{{ activity.time_spent }}</td>
+                <div class="panel-body table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Activity Name</th>
+                            <th scope="col">Time Spent</th>
                         </tr>
+                        </thead>
+                        <tbody>
 
 
-                    {% endfor %}
+                        {% for activity in tracked_activities %}
+                            <tr
+                                    {% for block_activity in blocked_activities %}
+                                        {% if activity.activity_name == block_activity.block_activities %}
+                                            class="bg-danger text-light"
+                                        {% endif %}
+                                    {% endfor %}
+
+                            >
+                                <th scope="row">{{ activity.index }}</th>
+                                <td>{{ activity.activity_name }}</td>
+                                <td>{{ activity.time_spent }}</td>
+                            </tr>
 
 
-                    </tbody>
-                </table>
+                        {% endfor %}
+
+
+                        </tbody>
+                    </table>
+                </div>
 
 
             </div>
@@ -91,12 +101,16 @@
         <div class="row mt-3">
             <div class="box col-md-4 col-sm-12">
                 <h2>Analytics</h2>
+                <canvas id="my-percentage-canvas" width="400" height="400"></canvas>
             </div>
-            <div class="box col-md-3 col-sm-12 ml-md-auto">
-                <h2>Analytics</h2>
-            </div>
-            <div class="box col-md-3 col-sm-12 ml-md-auto">
-                <h2>Analytics</h2>
+            <div class="box col-md-7 col-sm-12 ml-md-auto">
+                <h2 class="text-center">used Apps</h2>
+
+                <input class="d-block mx-auto checkbox" name="checkbox" type="checkbox" value="checked">
+
+
+                <canvas class="d-none" id="procrastination-apps-canvas" width="400" height="400"></canvas>
+                <canvas id="productivity-apps-canvas" width="400" height="400"></canvas>
             </div>
         </div>
 

@@ -114,17 +114,22 @@ def settings_authentication(request):
 
 
 def timetracking_post(request):
-    values = request.POST.get('timetracking_option')
-    values = [x.strip() for x in values.split(',')]
 
-    values_code = values[0]
-    values_name = values[1]
-    values_workingtime = values[2]
-    values_shortbreak = values[3]
-    values_longbreak = values[4]
-    values_cycle = values[5]
+    max_daily_work_time = request.POST.get('max-work-time')
+    max_daily_work_time = 0 if max_daily_work_time == '' else max_daily_work_time
+    print(max_daily_work_time)
+    timetracking_option_values = request.POST.get('timetracking_option')
+    timetracking_option_values = [x.strip() for x in timetracking_option_values.split(',')]
+
+    values_code = timetracking_option_values[0]
+    values_name = timetracking_option_values[1]
+    values_workingtime = timetracking_option_values[2]
+    values_shortbreak = timetracking_option_values[3]
+    values_longbreak = timetracking_option_values[4]
+    values_cycle = timetracking_option_values[5]
 
     timetracking_settings = TimeTrackingSetting.objects.get(user_id=request.user.id)
+    timetracking_settings.max_daily_work_time = str(max_daily_work_time)
     timetracking_settings.timetracking_name = values_code
     timetracking_settings.workingtime = values_workingtime
     timetracking_settings.short_break = values_shortbreak

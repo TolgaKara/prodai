@@ -6,10 +6,78 @@
 {% block static %}
     <link rel="stylesheet" href="{% static 'auth/projectmanagment/style.css' %}">
 {% endblock %}
+{% block staticjs %}
+    <script src="{% static 'auth/projectmanagment/index.js' %}"></script>
+{% endblock %}
 
 
 
 {% block content %}
     {% include 'auth/partials/_navbar.html' %}
+    <div class="container pt-3">
+        <div class="title-page">
+            <h1 class="text-center text-primary">Projectmanagment</h1>
+            <p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias,
+                assumenda at inventore odit repellendus reprehenderit rerum. Itaque, laudantium.</p>
+        </div>
+        <div class="main-section">
+            <button type="button" class="btn btn-outline-primary float-right" data-toggle="modal"
+                    data-target="#project-modal">+
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="project-modal" tabindex="-1" role="dialog" aria-labelledby="project-modal-label"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <form>
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="project-modal-label">Create Project</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <form>
+                                    <div class="form-group row">
+                                        <label for="project-name" class="col-sm-2 col-form-label">Name</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="project-name"
+                                                   placeholder="Name of the project" name="project-name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputPassword" class="col-sm-2 col-form-label">ToDo</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" id="todo-name"
+                                                   placeholder="ToDo for the Project">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="todo-time" placeholder="HH:MM">
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <button type="button" class="btn btn-outline-primary" id="submit-todo">+</button>
+                                        </div>
+
+                                    </div>
+                                    <hr>
+                                    <div class="list-of-todo">
+
+                                    </div>
+                                </form>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 {% endblock %}

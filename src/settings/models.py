@@ -7,6 +7,7 @@ class Setting(models.Model):
 
 class TimeTrackingSetting(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    max_daily_work_time = models.TextField(max_length=50)
     timetracking_name = models.CharField(max_length=100)
     workingtime = models.IntegerField()
     short_break = models.IntegerField()

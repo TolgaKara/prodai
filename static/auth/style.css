@@ -1,0 +1,43 @@
+/* Navbar */
+body {
+    background-color: #f6f6f6;
+}
+
+.navbar-brand img {
+    height: 40px;
+}
+
+nav {
+    border-bottom: rgba(25, 118, 210, 0.4) solid thin;
+    box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.5);
+}
+
+
+.dropdown-link,
+.nav-link {
+    color: #03A9F4;
+}
+
+.dropdown-link:hover,
+.nav-link:hover {
+    color: #003366;
+}
+
+.active {
+    color: #003366;
+    cursor: default;
+    pointer-events: none;
+}
+
+.vertical-line {
+    border-left: thin solid #03A9F4;
+}
+
+#navbar-profile-img {
+    width: 25%;
+}
+
+#profile-dropdown-link {
+    width: 200px;
+    padding-right: 0;
+}

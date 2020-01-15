@@ -1,6 +1,8 @@
 from django.db.models import Count, Sum
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
-from datetime import datetime
+import datetime
+
 import requests
 import json
 from django.conf import settings
@@ -11,7 +13,7 @@ from src.activity.models import TrackedActivities
 # Create your views here.
 def get_weekday_name():
     weekday_names = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-    weekday_number = datetime.today().weekday()
+    weekday_number = datetime.datetime.today().weekday()
     return weekday_names[weekday_number]
 
 
@@ -30,9 +32,9 @@ def get_timetracking_friendly_name(request, timetracking_settings):
 
 
 def get_current_date_sql_format():
-    current_day = '{:02d}'.format(datetime.today().day)
-    current_month = '{:02d}'.format(datetime.today().month)
-    current_year = datetime.today().year
+    current_day = '{:02d}'.format(datetime.datetime.today().day)
+    current_month = '{:02d}'.format(datetime.datetime.today().month)
+    current_year = datetime.datetime.today().year
     return str(current_day) + '-' + str(current_month) + '-' + str(current_year)
 
 
@@ -86,32 +88,45 @@ def validate_time(hours, minutes, seconds):
 
 
 def get_tracked_activities(request):
-    tracked_activities_obj = TrackedActivities.objects.filter(username=request.user.username)
-    summed_tracked_activities = tracked_activities_obj.values('activity_name').annotate(Sum('hours'), Sum('minutes'),
-                                                                                        Sum('seconds'))
-    tracked_activities_list = []
-    number = 0
-    for activities_dataset in summed_tracked_activities:
-        number += 1
-        for activity_data in activities_dataset:
-            activity_name = activities_dataset['activity_name']
-            hours = activities_dataset['hours__sum']
-            minutes = activities_dataset['minutes__sum']
-            seconds = activities_dataset['seconds__sum']
+    current_date = get_current_date_sql_format()
+    tracked_activities_obj = TrackedActivities.objects.filter(username=request.user.username,
+                                                              start_time__contains=current_date)
 
-            time_list = validate_time(hours, minutes, seconds)
-            hours = '{:02d}'.format(time_list[0])
-            minutes = '{:02d}'.format(time_list[1])
-            seconds = '{:02d}'.format(time_list[2])
-            time_spent = hours + ':' + minutes + ':' + seconds
-            tracked_activities_list.append(
-                {'index': number, 'activity_name': activity_name, 'time_spent': time_spent}
-            )
+    dataset_exist = TrackedActivities.current_active_activities(tracked_activities_obj, get_current_date_sql_format())
+    print(dataset_exist)
+    if dataset_exist:
 
-            break
+        summed_tracked_activities = tracked_activities_obj.values('activity_name').annotate(Sum('hours'),
+                                                                                            Sum('minutes'),
+                                                                                            Sum('seconds'))
+        tracked_activities_list = []
+        number = 0
+        for activities_dataset in summed_tracked_activities:
+            number += 1
+            for activity_data in activities_dataset:
 
-    # tracked_activities_list = sort_tracked_activity_list(tracked_activities_list)
-    return tracked_activities_list
+                activity_name = activities_dataset['activity_name']
+                if activity_name == '':
+                    activity_name = 'Unsupported Application'
+
+                hours = activities_dataset['hours__sum']
+                minutes = activities_dataset['minutes__sum']
+                seconds = activities_dataset['seconds__sum']
+
+                time_list = validate_time(hours, minutes, seconds)
+                hours = '{:02d}'.format(time_list[0])
+                minutes = '{:02d}'.format(time_list[1])
+                seconds = '{:02d}'.format(time_list[2])
+                time_spent = hours + ':' + minutes + ':' + seconds
+                tracked_activities_list.append(
+                    {'index': str(number), 'activity_name': activity_name, 'time_spent': time_spent}
+                )
+
+                break
+
+        # tracked_activities_list = sort_tracked_activity_list(tracked_activities_list)
+        return tracked_activities_list
+    return [{'index': '', 'activity_name': '', 'time_spent': ''}]
 
 
 def get_daily_worktime(request):
@@ -138,22 +153,141 @@ def get_daily_worktime(request):
     if (hours == 0 and minutes == 0 and seconds == 0):
         return '00:00:00'
 
-    return str(int(hours)) + ':' + str(int(minutes)) + ':' + str(seconds)
+    return '%02d:%02d:%02d' % (int(hours), int(minutes), seconds)
+
+
+def get_procrastination_time(request, block_activities):
+    proc_time_list = []
+    max_seconds = 0
+    tracked_activities = get_tracked_activities(request)
+    for track_activities in tracked_activities:
+        for block_activity in block_activities:
+
+            if track_activities.get('activity_name') == block_activity.get('block_activities'):
+                proc_time_list.append(track_activities.get('time_spent'))
+
+    for proc_time in proc_time_list:
+        splitted_time = [int(i) for i in proc_time.split(':')]
+        max_seconds += (splitted_time[0] * 60 + splitted_time[1]) * 60 + splitted_time[2]
+
+    max_seconds, seconds = divmod(max_seconds, 60)
+    hours, minutes = divmod(max_seconds, 60)
+    return '%02d:%02d:%02d' % (hours, minutes, seconds)
+
+
+def get_productivity_time(request, block_activities):
+    daily_worktime = get_daily_worktime(request).split(':')
+    procrastination_time = get_procrastination_time(request, block_activities).split(':')
+
+    daily_worktime = datetime.timedelta(hours=int(daily_worktime[0]), minutes=int(daily_worktime[1]),
+                                        seconds=int(daily_worktime[2]))
+    procrastination_time = datetime.timedelta(hours=int(procrastination_time[0]), minutes=int(procrastination_time[1]),
+                                              seconds=int(procrastination_time[2]))
+
+    productivity_time = str(daily_worktime - procrastination_time).split(':')
+    productivity_hours = int(productivity_time[0])
+    productivity_minutes = int(productivity_time[1])
+    productivity_seconds = int(productivity_time[2])
+
+    print('timedelta2', procrastination_time - daily_worktime)
+
+    return '%02d:%02d:%02d' % (productivity_hours, productivity_minutes, productivity_seconds)
+
+
+def calculate_max_daily_work_time(request, max_daily_work_time):
+    daily_worked_time = get_daily_worktime(request)
+    hours = int(max_daily_work_time)
+    minutes = 0
+    seconds = 0
+    daily_worked_time_list = daily_worked_time.split(':')
+
+    daily_worked_hours = int(daily_worked_time_list[0])
+    daily_worked_minutes = int(daily_worked_time_list[1])
+    daily_worked_seconds = int(daily_worked_time_list[2])
+
+    daily_worked_time = datetime.time(daily_worked_hours, daily_worked_minutes, daily_worked_seconds)
+
+    max_daily_work_time = datetime.time(hours, minutes, seconds)
+
+    status_color = ''
+
+    max_work_time = datetime.datetime.combine(datetime.date.today(), max_daily_work_time) - datetime.datetime.combine(
+        datetime.date.today(), daily_worked_time)
+    hours_max = '{:02d}'.format(hours)
+    minutes_max = '{:02d}'.format(minutes)
+    seconds_max = '{:02d}'.format(seconds)
+
+    return {'max_daily_work_time': max_work_time, 'status_color': status_color}
+
+
+def get_procrastination_percentage(procrastination_time, timetracking_max_workhours):
+    procrastination_time_list = procrastination_time.split(':')
+    proc_hours = int(procrastination_time_list[0])
+    proc_minutes = int(procrastination_time_list[1])
+    proc_seconds = int(procrastination_time_list[2])
+    procrastination_time = datetime.timedelta(hours=proc_hours, minutes=proc_minutes, seconds=proc_seconds)
+
+    max_hours = int(timetracking_max_workhours)
+    max_minutes = 0
+    max_seconds = 0
+    max_time = datetime.timedelta(hours=max_hours, minutes=max_minutes, seconds=max_seconds)
+
+    percentage_procrastination = procrastination_time / max_time * 100
+    return str('%.2f' % percentage_procrastination) + ' %'
+
+def get_productivity_percentage(productivity_time, timetracking_max_workhours):
+
+    productivity_time_list = productivity_time.split(':')
+    prod_hours = int(productivity_time_list[0])
+    prod_minutes = int(productivity_time_list[1])
+    prod_seconds = int(productivity_time_list[2])
+    productivity_time = datetime.timedelta(hours=prod_hours, minutes=prod_minutes, seconds=prod_seconds)
+
+    max_hours = int(timetracking_max_workhours)
+    max_minutes = 0
+    max_seconds = 0
+    max_time = datetime.timedelta(hours=max_hours, minutes=max_minutes, seconds=max_seconds)
+
+    percentage_productivity = productivity_time / max_time * 100
+
+    return str('%.2f' % percentage_productivity) + ' %'
+
+
+def get_json_data_for_charts(request):
+    data = {
+        'percentage_comparison':{
+            'productivity': 100,
+            'procrastination': 200
+        }
+
+    }
+    return JsonResponse(data)
 
 
 def dashboard(request):
     if request.user.is_authenticated:
         timetracking_settings = TimeTrackingSetting.objects.get(user_id=request.user.id)
         timetracking_name = get_timetracking_friendly_name(request, timetracking_settings)
-
-        weekday = get_weekday_name()
-        date = datetime.today().date()
-
-        daily_worktime = get_daily_worktime(request)
-        tracked_activities = get_tracked_activities(request)
+        timetracking_max_workhours = calculate_max_daily_work_time(request, timetracking_settings.max_daily_work_time)
         blocked_activities = ActivitiesSetting.objects.filter(user=request.user).values('block_activities')
 
-        print(blocked_activities)
+        weekday = get_weekday_name()
+        date = datetime.datetime.today().date()
+
+        daily_worktime = get_daily_worktime(request)
+        productivity_time = get_productivity_time(request, blocked_activities)
+        procrastination_time = get_procrastination_time(request, blocked_activities)
+
+        productivity_percentage = get_productivity_percentage(productivity_time,
+                                                              timetracking_settings.max_daily_work_time)
+        procrastination_percentage = get_procrastination_percentage(procrastination_time,
+                                                                    timetracking_settings.max_daily_work_time)
+
+        tracked_activities = get_tracked_activities(request)
+
+        #json_percentage_comparison = get_json_data_for_charts(request)
+        #json_productivity_apps_comparison = get_json_data_for_charts(request)
+        #json_procrastination_apps_comparison = get_json_data_for_charts(request)
 
 
         return render(request, 'auth/dashboard/index.html', context={
@@ -162,6 +296,11 @@ def dashboard(request):
             'blocked_activities': blocked_activities,
             'date': date,
             'daily_worktime': daily_worktime,
+            'productivity_worktime': productivity_time,
+            'procrastination_time': procrastination_time,
+            'procrastination_percentage': procrastination_percentage,
+            'productivity_percentage': productivity_percentage,
+            'timetracking_max_workhours': timetracking_max_workhours,
             'timetracking_code': timetracking_settings.timetracking_name,
             'timetracking_name': timetracking_name,
             'timetracking_working_time': timetracking_settings.workingtime,
