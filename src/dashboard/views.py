@@ -312,10 +312,11 @@ def get_name_and_time_of_activity(request, blocked_activities, tracked_activitie
 
     for activity in tracked_activities:
         print('Activity:',activity)
+        time_spent_percentage = convert_time_spent_into_percentage(activity['time_spent'],
+                                                                       request.session.get('max_work_time'))
         for block_activity in blocked_activities:
 
-            time_spent_percentage = convert_time_spent_into_percentage(activity['time_spent'],
-                                                                       request.session.get('max_work_time'))
+
             if activity['activity_name'] == block_activity['block_activities']:
                 #print('BLOCK Activity:', block_activity)
                 procrastination_entries.append({'name': activity['activity_name'], 'time_spent': time_spent_percentage})
@@ -326,6 +327,7 @@ def get_name_and_time_of_activity(request, blocked_activities, tracked_activitie
 
     request.session['procrastination_entries'] = procrastination_entries
     request.session['productivity_entries'] = productivity_entries
+
 
 
 
