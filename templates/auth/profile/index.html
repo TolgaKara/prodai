@@ -83,7 +83,7 @@
 
                 <div class="col-xs-6">
                     <label for="last_name" class="profile-label">Gender:</label>
-                    {% if profile.gender is not None %}
+                    {% if profile.gender != '' %}
                         <span class="profile-value">{{ profile.gender }}</span>
                     {% else %}
                         <span class="profile-value">Not Selected in the <a
@@ -93,7 +93,7 @@
 
                 <div class="col-xs-6">
                     <label for="last_name" class="profile-label">Birthdate:</label>
-                    {% if profile.gender is not None %}
+                    {% if profile.gender != '' %}
                         <span class="profile-value">{{ profile.birthdate }}</span>
                     {% else %}
                         <span class="profile-value">Not Selected in the </span>
@@ -103,7 +103,7 @@
 
                 <div class="col-xs-6">
                     <label for="last_name" class="profile-label">Location:</label>
-                    {% if profile.gender is not None %}
+                    {% if profile.gender != '' %}
                         <span class="profile-value">{{ profile.location }}</span>
                     {% else %}
                         <span class="profile-value">Not Selected in the <a
@@ -119,7 +119,7 @@
 
                 <div class="col-xs-6">
                     <label for="last_name" class="profile-label">Multifactor Authentication:</label>
-                    {% if profile.gender is not None %}
+                    {% if profile.gender != '' %}
                         {% for multifactor_auth in profile.multifactor_auths %}
                             <span class="profile-value">{{ multifactor_auth }}</span>
                         {% endfor %}

@@ -168,7 +168,13 @@ def logout(request):
 def profile_view(request):
     if request.user.is_authenticated:
         profile_obj = models.ProfileApp.objects.filter(user=request.user)[0]
-        print(profile_obj.location)
+        print(profile_obj.gender)
+        if profile_obj.gender is not '':
+            print(True)
+        else:
+            print(False)
+
+
         return render(request, 'auth/profile/index.html', context={
             'profile': profile_obj
 

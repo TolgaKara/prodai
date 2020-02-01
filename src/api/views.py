@@ -14,9 +14,9 @@ def api(request):
 
 @csrf_exempt
 def timetracking_activities(request):
+    username = ""
     if request.method != 'POST':
         return
-    user = ""
     try:
         posted_json_content = json.loads(request.body)
     except json.decoder.JSONDecodeError:
@@ -27,28 +27,26 @@ def timetracking_activities(request):
 
 
     for data in posted_json_content:
-        if data == 'authentifications':
-            auth_data = posted_json_content[data]
-            global username
-            username = auth_data["username"]
-            password = auth_data["password"]
-            break
-        if data == 'activities':
-            for activities_data in posted_json_content[data]:
-                activity_name = activities_data['name']
-                time_entries = activities_data['time_entries'][0]
-                days = time_entries['days']
-                end_time = time_entries['end_time']
-                hours = time_entries['hours']
-                minutes = time_entries['minutes']
-                seconds = time_entries['seconds']
-                start_time = time_entries['start_time']
+        for cred in posted_json_content['authentifications']:
 
-                tracked_activity_obj = TrackedActivities.objects.create(username=username, activity_name=activity_name,
-                                                                        days=days, end_time=end_time,
-                                                                        hours=hours, minutes=minutes, seconds=seconds,
-                                                                        start_time=start_time)
-                tracked_activity_obj.save()
+
+
+            if data == 'activities':
+                for activities_data in posted_json_content[data]:
+                    activity_name = activities_data['name']
+                    time_entries = activities_data['time_entries'][0]
+                    days = time_entries['days']
+                    end_time = time_entries['end_time']
+                    hours = time_entries['hours']
+                    minutes = time_entries['minutes']
+                    seconds = time_entries['seconds']
+                    start_time = time_entries['start_time']
+                    print(cred["username"])
+                    tracked_activity_obj = TrackedActivities.objects.create(username=cred["username"], activity_name=activity_name,
+                                                                            days=days, end_time=end_time,
+                                                                            hours=hours, minutes=minutes, seconds=seconds,
+                                                                            start_time=start_time)
+                    tracked_activity_obj.save()
 
     return JsonResponse({
         'status_code': 200,
