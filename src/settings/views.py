@@ -8,8 +8,8 @@ from src.accounts.models import ProfileApp
 def settings(request):
     if request.user.is_authenticated:
         # This is the only option how the user can access his settings
-        return render(request,'auth/settings/index.html',context={
-            'content':'home'
+        return render(request, 'auth/settings/index.html', context={
+            'content': 'home'
         })
     else:
         return redirect('homepage')
@@ -19,8 +19,8 @@ def settings_profile(request):
     profile = ProfileApp.objects.get(user=request.user)
     if request.user.is_authenticated:
         return render(request, 'auth/settings/index.html', context={
-            'content' : 'profile',
-            'profile' : profile
+            'content': 'profile',
+            'profile': profile
         })
     else:
         return redirect('homepage')
@@ -45,6 +45,7 @@ def settings_timetracking(request):
             })
     else:
         return redirect('homepage')
+
 
 def settings_activities(request):
     try:
@@ -114,7 +115,6 @@ def settings_authentication(request):
 
 
 def timetracking_post(request):
-
     max_daily_work_time = request.POST.get('max-work-time')
     max_daily_work_time = 0 if max_daily_work_time == '' else max_daily_work_time
     print(max_daily_work_time)
@@ -138,13 +138,12 @@ def timetracking_post(request):
 
     timetracking_settings.save()
 
-
     return redirect('settings_timetracking')
 
 
 def block_activity_post(request):
     activity = request.POST.get('activity_name')
-    activity_obj, created = ActivitiesSetting.objects.get_or_create(user = request.user, block_activities = activity)
+    activity_obj, created = ActivitiesSetting.objects.get_or_create(user=request.user, block_activities=activity)
 
     return redirect('settings_activities')
 
@@ -179,5 +178,3 @@ def profile_post(request):
     profile_settings.multifactor_auths = multi_auth
     profile_settings.save()
     return redirect('settings_profile')
-
-

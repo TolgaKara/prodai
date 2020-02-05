@@ -76,7 +76,7 @@ $.ajax({
             if ($(".checkbox").is(':checked')) {
                 $('#procrastination-apps-canvas').removeClass('d-none')
                 $('#procrastination-apps-canvas').show()
-                 $('#productivity-apps-canvas').hide()
+                $('#productivity-apps-canvas').hide()
                 console.log('procrastination')
                 var procrastinationAppsSpent = document.getElementById('procrastination-apps-canvas')
 

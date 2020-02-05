@@ -1,21 +1,21 @@
-﻿
-/*!
+﻿/*!
  * Font Awesome Pro 5.10.2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license (Commercial License)
  */
-! function() {
+!function () {
     "use strict";
     var c = {},
         h = {};
     try {
         "undefined" != typeof window && (c = window), "undefined" != typeof document && (h = document)
-    } catch (c) {}
+    } catch (c) {
+    }
     var l = (c.navigator || {}).userAgent,
         v = void 0 === l ? "" : l,
         z = c,
         a = h,
         M = (z.document, !!a.documentElement && !!a.head && "function" == typeof a.addEventListener && a.createElement, ~v.indexOf("MSIE") || v.indexOf("Trident/"), "___FONT_AWESOME___"),
-        m = function() {
+        m = function () {
             try {
                 return !0
             } catch (c) {
@@ -29,17 +29,17 @@
     function V(c, v) {
         var h = (2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : {}).skipHooks,
             l = void 0 !== h && h,
-            z = Object.keys(v).reduce(function(c, h) {
+            z = Object.keys(v).reduce(function (c, h) {
                 var l = v[h];
                 return !!l.icon ? c[l.iconName] = l.icon : c[h] = l, c
             }, {});
-        "function" != typeof H.hooks.addPack || l ? H.styles[c] = function(z) {
+        "function" != typeof H.hooks.addPack || l ? H.styles[c] = function (z) {
             for (var c = 1; c < arguments.length; c++) {
                 var a = null != arguments[c] ? arguments[c] : {},
                     h = Object.keys(a);
-                "function" == typeof Object.getOwnPropertySymbols && (h = h.concat(Object.getOwnPropertySymbols(a).filter(function(c) {
+                "function" == typeof Object.getOwnPropertySymbols && (h = h.concat(Object.getOwnPropertySymbols(a).filter(function (c) {
                     return Object.getOwnPropertyDescriptor(a, c).enumerable
-                }))), h.forEach(function(c) {
+                }))), h.forEach(function (c) {
                     var h, l, v;
                     h = z, v = a[l = c], l in h ? Object.defineProperty(h, l, {
                         value: v,
@@ -52,6 +52,7 @@
             return z
         }({}, H.styles[c] || {}, z) : H.hooks.addPack(c, z), "fas" === c && V("fa", v)
     }
+
     var L = {
         abacus: [576, 512, [], "f640", "M32 0C14.33 0 0 14.33 0 32v464c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V32C64 14.33 49.67 0 32 0zm512 0c-17.67 0-32 14.33-32 32v464c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V32c0-17.67-14.33-32-32-32zm-80 32h-32c-8.84 0-16 7.16-16 16v24H256V48c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v24h-32V48c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v96c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-24h32v24c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-24h160v24c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V48c0-8.84-7.16-16-16-16zM352 208c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v24h-32v-24c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v24h-32v-24c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v96c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-24h32v24c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-24h32v24c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-24h128v-48H352v-24zm112 144h-32c-8.84 0-16 7.16-16 16v24H256v-24c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v24h-32v-24c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v96c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-24h32v24c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-24h160v24c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-96c0-8.84-7.16-16-16-16z"],
         acorn: [448, 512, [], "f6ae", "M175.11 487.55L224 512l48.89-24.45C360.6 443.7 416 354.06 416 256H32c0 98.06 55.4 187.7 143.11 231.55zM352 64H251.5c3.4-9.4 8.47-18.18 15.16-26.04 5.56-6.52 5.31-15.91-.62-21.86L254.69 4.78c-3.12-3.16-7.72-5.14-11.97-4.72-4.38.14-8.5 2.08-11.31 5.3-14.75 16.8-24.55 37.06-29.39 58.65H96c-53.02 0-96 42.98-96 96v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32C448 106.98 405.02 64 352 64z"],
@@ -1703,13 +1704,13 @@
         "yen-sign": [384, 512, [], "f157", "M351.2 32h-65.3c-4.6 0-8.8 2.6-10.8 6.7l-55.4 113.2c-14.5 34.7-27.1 71.9-27.1 71.9h-1.3s-12.6-37.2-27.1-71.9L108.8 38.7c-2-4.1-6.2-6.7-10.8-6.7H32.8c-9.1 0-14.8 9.7-10.6 17.6L102.3 200H44c-6.6 0-12 5.4-12 12v32c0 6.6 5.4 12 12 12h88.2l19.8 37.2V320H44c-6.6 0-12 5.4-12 12v32c0 6.6 5.4 12 12 12h108v92c0 6.6 5.4 12 12 12h56c6.6 0 12-5.4 12-12v-92h108c6.6 0 12-5.4 12-12v-32c0-6.6-5.4-12-12-12H232v-26.8l19.8-37.2H340c6.6 0 12-5.4 12-12v-32c0-6.6-5.4-12-12-12h-58.3l80.1-150.4c4.3-7.9-1.5-17.6-10.6-17.6z"],
         "yin-yang": [496, 512, [], "f6ad", "M248 8C111.03 8 0 119.03 0 256s111.03 248 248 248 248-111.03 248-248S384.97 8 248 8zm0 376c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32zm0-128c-53.02 0-96 42.98-96 96s42.98 96 96 96c-106.04 0-192-85.96-192-192S141.96 64 248 64c53.02 0 96 42.98 96 96s-42.98 96-96 96zm0-128c-17.67 0-32 14.33-32 32s14.33 32 32 32 32-14.33 32-32-14.33-32-32-32z"]
     };
-    ! function(c) {
+    !function (c) {
         try {
             c()
         } catch (c) {
             if (!m) throw c
         }
-    }(function() {
+    }(function () {
         V("fas", L)
     })
 }();

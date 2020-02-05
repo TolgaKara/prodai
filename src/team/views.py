@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+
 # Create your views here.
 def team(request):
     if request.user.is_authenticated:
@@ -7,4 +8,3 @@ def team(request):
         return render(request, 'auth/team/index.html')
     else:
         return redirect('homepage')
-

@@ -3,19 +3,20 @@
  * License - https://fontawesome.com/license (Commercial License)
  */
 var l, a;
-l = this, a = function() {
+l = this, a = function () {
     "use strict";
     var l = {},
         a = {};
     try {
         "undefined" != typeof window && (l = window), "undefined" != typeof document && (a = document)
-    } catch (l) {}
+    } catch (l) {
+    }
     var e = (l.navigator || {}).userAgent,
         r = void 0 === e ? "" : e,
         n = l,
         o = a,
         u = (n.document, !!o.documentElement && !!o.head && "function" == typeof o.addEventListener && o.createElement, ~r.indexOf("MSIE") || r.indexOf("Trident/"), "___FONT_AWESOME___"),
-        t = function() {
+        t = function () {
             try {
                 return "production" === process.env.NODE_ENV
             } catch (l) {
@@ -488,13 +489,13 @@ l = this, a = function() {
             ["wpexplorer", "fab", null],
             ["spotify", "fab", null]
         ];
-    return function(l) {
+    return function (l) {
         try {
             l()
         } catch (l) {
             if (!t) throw l
         }
-    }(function() {
+    }(function () {
         var l;
         "function" == typeof i.hooks.addShims ? i.hooks.addShims(s) : (l = i.shims).push.apply(l, s)
     }), s

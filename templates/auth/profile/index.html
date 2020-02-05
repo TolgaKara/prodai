@@ -14,9 +14,11 @@
             <div class="col-sm-3">
                 <div class="text-center">
                     {% if profile.img %}
-                        <img src="{{ profile.img }}" class="avatar img-circle img-thumbnail" alt="avatar"><img src="{{ profile.img }}" class="avatar img-circle img-thumbnail" alt="User Picture">
+                        <img src="{{ profile.img }}" class="avatar img-circle img-thumbnail" alt="avatar">
+                        <img src="{{ profile.img }}" class="avatar img-circle img-thumbnail" alt="User Picture">
                     {% else %}
-                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Default User Picture" id="default-user-picture">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                             alt="Default User Picture" id="default-user-picture">
                     {% endif %}
 
                 </div>

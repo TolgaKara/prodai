@@ -265,10 +265,6 @@ def get_json_data_for_charts(request):
     productivity_percentage_num = float(request.session.get('prod_perc')[:-2])
     procrastination_percentage_num = float(request.session.get('proc_perc')[:-2])
     total_open_work_time_num = float(100 - productivity_percentage_num - procrastination_percentage_num)
-    print(productivity_percentage_num)
-    print(procrastination_percentage_num)
-    print(total_open_work_time_num)
-
 
     data = {
         'percentage_comparison': {
@@ -311,27 +307,18 @@ def get_name_and_time_of_activity(request, blocked_activities, tracked_activitie
     procrastination_entries = []
 
     for activity in tracked_activities:
-        print('Activity:',activity)
         time_spent_percentage = convert_time_spent_into_percentage(activity['time_spent'],
-                                                                       request.session.get('max_work_time'))
+                                                                   request.session.get('max_work_time'))
         for block_activity in blocked_activities:
 
-
             if activity['activity_name'] == block_activity['block_activities']:
-                #print('BLOCK Activity:', block_activity)
                 procrastination_entries.append({'name': activity['activity_name'], 'time_spent': time_spent_percentage})
                 break
         else:
             productivity_entries.append({'name': activity['activity_name'], 'time_spent': time_spent_percentage})
 
-
     request.session['procrastination_entries'] = procrastination_entries
     request.session['productivity_entries'] = productivity_entries
-
-
-
-
-
 
 
 def dashboard(request):

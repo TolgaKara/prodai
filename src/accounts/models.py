@@ -3,6 +3,7 @@ import random
 from django.db import models
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 
 
@@ -19,6 +20,7 @@ class Account(models.Model):
             activation_key += random.choice(alphabet_and_letters)
 
         return activation_key
+
 
 class ProfileApp(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -1,15 +1,15 @@
-.profile-label{
+.profile-label {
     color: #003366;
     font-weight: bold;
     padding-right: 15px;
 }
 
-#default-user-picture{
+#default-user-picture {
     width: 100%;
     border: #03A9F4 solid 1.5px;
 }
 
-.profile-heading{
+.profile-heading {
     border-bottom: #03A9F4 solid 2px;
     text-transform: uppercase;
 }

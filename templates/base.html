@@ -22,22 +22,22 @@
 
 
     {% comment %} CUSTOME STYLE CSS {% endcomment %}
-    <link rel="stylesheet" href="{% static 'homepage/css/style.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/tooltip.css' %}" />
+    <link rel="stylesheet" href="{% static 'homepage/css/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/tooltip.css' %}"/>
 
     {% block static %}{% endblock %}
 
     <link rel="shortcut icon" href="{% static 'general/favicon/favicon.ico' %}">
 </head>
 <body>
-    {% block content %}{% endblock %}
+{% block content %}{% endblock %}
 
-    {% comment %}BOOTSTRAP JS ANS JQUERY{% endcomment %}
-    {% comment %}{% bootstrap_javascript jquery=True %}{% endcomment %}
+{% comment %}BOOTSTRAP JS ANS JQUERY{% endcomment %}
+{% comment %}{% bootstrap_javascript jquery=True %}{% endcomment %}
 
 
-    {% comment %}GENERAL FUNCTIONALITY LIKE GETTING THE DATE FOR COPYRIGHT{% endcomment %}
-    <script src="{% static 'js/main.js' %}"></script>
-    {% block staticjs %}{% endblock %}
+{% comment %}GENERAL FUNCTIONALITY LIKE GETTING THE DATE FOR COPYRIGHT{% endcomment %}
+<script src="{% static 'js/main.js' %}"></script>
+{% block staticjs %}{% endblock %}
 </body>
 </html>

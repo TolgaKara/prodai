@@ -21,34 +21,35 @@
 
     {% comment %}Pagecontent{% endcomment %}
     <div id="page-content-wrapper">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <a href="#" id="menu-toggle"><i class="fas fa-angle-right fa-lg"></i></a>
-                <a href="{% url 'dashboard' %}"><img class="pl-2" src="{% static 'general/img/logo.png' %}" alt="Logo von Prodai"
-                     style="width: 100px; height: 25px"></a>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="#" id="menu-toggle"><i class="fas fa-angle-right fa-lg"></i></a>
+                    <a href="{% url 'dashboard' %}"><img class="pl-2" src="{% static 'general/img/logo.png' %}"
+                                                         alt="Logo von Prodai"
+                                                         style="width: 100px; height: 25px"></a>
+                </div>
+                {% if content == 'home' %}
+                    {% include 'auth/settings/homeContent.html' %}
+                {% elif content == 'profile' %}
+                    {% include 'auth/settings/profileContent.html' %}
+                {% elif content == 'timetracking' %}
+                    {% include 'auth/settings/timetrackingContent.html' %}
+                {% elif content == 'activities' %}
+                    {% include 'auth/settings/activitiesContent.html' %}
+                {% elif content == 'analytics' %}
+                    {% include 'auth/settings/analyticsContent.html' %}
+                {% elif content == 'projectmanagement' %}
+                    {% include 'auth/settings/projectmanagementContent.html' %}
+                {% elif content == 'team' %}
+                    {% include 'auth/settings/teamContent.html' %}
+                {% elif content == 'company' %}
+                    {% include 'auth/settings/companyContent.html' %}
+                {% elif content == 'authentication' %}
+                    {% include 'auth/settings/authenticationContent.html' %}
+                {% endif %}
             </div>
-    {% if content == 'home' %}
-        {% include 'auth/settings/homeContent.html' %}
-    {% elif content == 'profile' %}
-        {% include 'auth/settings/profileContent.html' %}
-    {% elif content == 'timetracking' %}
-        {% include 'auth/settings/timetrackingContent.html' %}
-    {% elif content == 'activities' %}
-        {% include 'auth/settings/activitiesContent.html' %}
-    {% elif content == 'analytics' %}
-        {% include 'auth/settings/analyticsContent.html' %}
-    {% elif content == 'projectmanagement' %}
-        {% include 'auth/settings/projectmanagementContent.html' %}
-    {% elif content == 'team' %}
-        {% include 'auth/settings/teamContent.html' %}
-    {% elif content == 'company' %}
-        {% include 'auth/settings/companyContent.html' %}
-    {% elif content == 'authentication' %}
-        {% include 'auth/settings/authenticationContent.html' %}
-    {% endif %}
         </div>
-    </div>
     </div>
 
 

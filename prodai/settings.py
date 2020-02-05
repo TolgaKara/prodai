@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -75,7 +74,6 @@ TEMPLATES = [
     },
 ]
 
-
 WSGI_APPLICATION = 'prodai.wsgi.application'
 
 # Database
@@ -135,7 +133,6 @@ VENV_PATH = os.path.dirname(BASE_DIR)
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'asset')
 
-
 # MEDIA URL AND ROOT
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
 MEDIA_URL = '/media/'
@@ -151,6 +148,7 @@ EMAIL_HOST_PASSWORD = '^%9$1Nv2CjA6'
 
 # Messages
 from django.contrib.messages import constants as messages
+
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
@@ -160,6 +158,3 @@ OpenWeatherAPI = '6b5e84306b8f98f2e0679fbeac3b3f12'
 
 # GeoIP Path to look at
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip/')
-
-
-

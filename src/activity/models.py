@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from src.core.models import TimeStampedModel
 
+
 # Create your models here.
 class TrackedActivities(TimeStampedModel):
     username = models.TextField(max_length=500)

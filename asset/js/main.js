@@ -1,7 +1,7 @@
 const date = new Date();
 const yearTag = document.querySelector('.year');
 
-if (yearTag !== null ) {
+if (yearTag !== null) {
     yearTag.innerHTML = date.getFullYear();
 } else {
     console.log('footer not contained')

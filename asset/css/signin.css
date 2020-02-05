@@ -1,11 +1,11 @@
 
 .signin-form {
-    background-color: rgba(255,255,255,.85);
+    background-color: rgba(255, 255, 255, .85);
     box-shadow: 0 0 30px black;
 }
 
 .signin-img {
-     background: linear-gradient(
+    background: linear-gradient(
             rgba(0, 0, 0, 0.7),
             rgba(0, 0, 0, 0.7)
     ), url("https://images.unsplash.com/photo-1534825696654-39efb2c8453d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80") no-repeat fixed center center;
@@ -20,6 +20,6 @@
 /*TODO MEDIA QUERIES*/
 
 /*MEDIA QUERIES*/
-@media screen and (max-width: 700px){
+@media screen and (max-width: 700px) {
 
 }

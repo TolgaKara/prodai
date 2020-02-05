@@ -25,11 +25,8 @@ def timetracking_activities(request):
             'messages': 'File is empty and so not ready to assign to the Database'
         })
 
-
     for data in posted_json_content:
         for cred in posted_json_content['authentifications']:
-
-
 
             if data == 'activities':
                 for activities_data in posted_json_content[data]:
@@ -41,10 +38,11 @@ def timetracking_activities(request):
                     minutes = time_entries['minutes']
                     seconds = time_entries['seconds']
                     start_time = time_entries['start_time']
-                    print(cred["username"])
-                    tracked_activity_obj = TrackedActivities.objects.create(username=cred["username"], activity_name=activity_name,
+                    tracked_activity_obj = TrackedActivities.objects.create(username=cred["username"],
+                                                                            activity_name=activity_name,
                                                                             days=days, end_time=end_time,
-                                                                            hours=hours, minutes=minutes, seconds=seconds,
+                                                                            hours=hours, minutes=minutes,
+                                                                            seconds=seconds,
                                                                             start_time=start_time)
                     tracked_activity_obj.save()
 
@@ -52,6 +50,7 @@ def timetracking_activities(request):
         'status_code': 200,
 
     })
+
 
 #
 # def get_blocked_activities(user_obj):
@@ -76,7 +75,6 @@ def check_auth(request):
     else:
         user_obj = User.objects.get(username=username)
 
-        #block_activities_obj = get_blocked_activities(user_obj)
 
         response = JsonResponse({
             'status_code': 200,

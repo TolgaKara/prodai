@@ -174,7 +174,6 @@ def profile_view(request):
         else:
             print(False)
 
-
         return render(request, 'auth/profile/index.html', context={
             'profile': profile_obj
 

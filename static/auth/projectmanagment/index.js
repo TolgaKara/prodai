@@ -7,8 +7,8 @@ $('#submit-todo').click(function () {
         if (todoTimeValue === "") {
             todoTimeValue = '00:00'
         }
-        var todoHours = todoTimeValue.substring(0,2)
-        var todoMinutes = todoTimeValue.substring(3,5)
+        var todoHours = todoTimeValue.substring(0, 2)
+        var todoMinutes = todoTimeValue.substring(3, 5)
 
         console.log(isNaN("00"));
         console.log(isNaN("00"));

@@ -55,69 +55,69 @@ body {
 
 /* PRICING */
 .price-num {
-  background-color: #ced0ce;
-  padding: 10px 0;
-  position: relative;
+    background-color: #ced0ce;
+    padding: 10px 0;
+    position: relative;
 }
 
 .money {
-  position: absolute;
-  top: 32%;
-  left: 22%;
-  font-size: 28px;
+    position: absolute;
+    top: 32%;
+    left: 22%;
+    font-size: 28px;
 
 }
 
 .money-num {
-  font-size: 70px;
+    font-size: 70px;
 }
 
 .money-end {
-  font-size: 25px;
+    font-size: 25px;
 }
 
 .price-num::after {
-  content: "";
-  position: absolute;
-  bottom: -19px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  border-top: 20px solid #ced0ce;
+    content: "";
+    position: absolute;
+    bottom: -19px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #ced0ce;
 }
 
 #pricing .list-group-item {
-  position: relative;
-  font-size: 12px;
+    position: relative;
+    font-size: 12px;
 
 }
 
 .first-list {
-  border-top: none!important;
+    border-top: none !important;
 }
 
 
 .price-btn {
-  border: 2px solid #03A9F4;
-  margin-bottom: -20px;
-  text-decoration: none;
-  color: #003366;
-  background-color: #fff;
+    border: 2px solid #03A9F4;
+    margin-bottom: -20px;
+    text-decoration: none;
+    color: #003366;
+    background-color: #fff;
 }
 
 .price-btn:hover {
-  background-color: #03A9F4;
+    background-color: #03A9F4;
     color: #fefefe;
 }
 
 .standard .price-num {
-  background-color: #03A9F4;
+    background-color: #03A9F4;
     color: #fefefe;
 }
 
 .standard .price-num::after {
-  border-top: 20px solid #03A9F4;
+    border-top: 20px solid #03A9F4;
 
 }
 
