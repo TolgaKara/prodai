@@ -82,9 +82,9 @@ WSGI_APPLICATION = 'prodai.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DB_NAME', 'prodai'),
-        'USER': os.environ.get('DB_USER', 'postgres'),
-        'PASSWORD': os.environ.get('DB_PASS', 'qweasdyxc123'),
+        'NAME': os.environ.get('DB_NAME', 'Name der erstellten Datenbank'),
+        'USER': os.environ.get('DB_USER', 'Benutzername'),
+        'PASSWORD': os.environ.get('DB_PASS', 'Passwort'),
         'HOST': 'localhost',
         'PORT': '5432',
     }
