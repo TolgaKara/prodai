@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'qcvtmplq&w8w=ve0paqpgpsjo^(qc2@ce$vq-i)*4%==8c+g&l'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -82,9 +82,9 @@ WSGI_APPLICATION = 'prodai.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DB_NAME', 'Name der erstellten Datenbank'),
-        'USER': os.environ.get('DB_USER', 'Benutzername'),
-        'PASSWORD': os.environ.get('DB_PASS', 'Passwort'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -139,12 +139,12 @@ MEDIA_URL = '/media/'
 
 # Email
 #   Hushmail
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'contact.prodai@gmail.com'
-EMAIL_HOST_PASSWORD = '^%9$1Nv2CjA6'
+EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND')
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 # Messages
 from django.contrib.messages import constants as messages
@@ -154,7 +154,7 @@ MESSAGE_TAGS = {
 }
 
 # Weather API key from OpenWeather 60 request per min
-OpenWeatherAPI = '6b5e84306b8f98f2e0679fbeac3b3f12'
+OpenWeatherAPI = os.environ.get('OpenWeatherAPI')
 
 # GeoIP Path to look at
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip/')
